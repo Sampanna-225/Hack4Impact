@@ -202,7 +202,7 @@ input:focus + .slider {
 }
 
 @keyframes gapping {
-    0% { gap: 15px; }
+    0% { gap: 16px; }
     100% { gap: 18px; }
 }
 

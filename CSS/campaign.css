@@ -1,0 +1,322 @@
+
+:root {
+    --primary: rgb(204, 20, 20);
+    --primary-light: #e8f5e9;
+    --secondary: #040dc2;
+    --accent: #d32f2f;
+    --dark: #1e293b;
+    --light: #f8fafc;
+    --border: #e2e8f0;
+    --shadow: 0 4px 10px rgba(0,0,0,0.05);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: rgb(56, 21, 3);
+    color: #000000;
+    transition: color 0.5s ease;
+    font-family: sans-serif;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    position: relative;
+
+}
+
+
+
+nav {
+    border: 2px solid black;
+    background: linear-gradient(90deg, rgb(56, 21, 3), #722b01, #944203, rgb(56, 21, 3));
+    display: flex;
+    position: sticky;
+    color: black;
+    top: 0;
+    left: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; /* Pushes Logo left, Switch right */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+.center-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    /* No absolute positioning needed; flexbox handles centering */
+}
+
+.container-animate-load {
+    animation: gapping 2s 1 forwards, container-stretch 3s 1 forwards;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.logo img {
+    height: 60px; 
+    width: auto;
+    display: block;
+}
+
+.flag{
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.flag img{
+    height: 38px;
+    width: auto;
+    display: block;
+}
+
+#b0 , #b1, #b2, #b3, #b4, #b5,#b6 {
+    height: 30px;
+    width: 150px;
+    font-weight: 600;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-size: 300% 100%;
+    transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+#b0:hover , #b1:hover, #b2:hover, #b3:hover, #b4:hover, #b5:hover, #b6:hover {
+    background: linear-gradient(90deg, rgb(255, 0, 0), #cd0606, #0bb2a4, rgb(255, 255, 255));
+    color: rgb(0, 0, 0);
+    background-position: 100% 0;
+    transform: translateY(-3px);
+    border: 2px solid black;
+    font-weight: 700;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.campaign-hero {
+    background: url('../data/banner.png');
+    background-color: cover;
+    padding-top: 20px;
+    width: 100%;
+    height: 560px;
+    color: white;
+    text-align: center;
+    padding: 5rem 2rem;
+}
+
+.campaign-hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+.campaign-hero p {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.15rem;
+    opacity: 0.9;
+}
+
+
+/* Second Navigation bar */
+.tabs-wrapper {
+    border: 2px solid black;
+    max-width: 800px;
+    max-height: 80px;
+    margin: -2rem auto 0rem auto;
+    background: rgb(24, 6, 73);
+    padding: 0.5rem;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 40px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.tab-btn:hover {
+    color: var(--secondary);
+}
+
+.tab-btn.active {
+    background-color: var(--primary);
+    color: rgb(0, 0, 0);
+}
+
+
+
+/* main data and body */
+.campaign-container {
+    max-width: 1400px;
+    max-height: 400px;
+    margin: 0 auto 5rem auto;
+}
+
+.campaign-panel {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.campaign-panel.active-panel {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .split-grid { grid-template-columns: 1fr; }
+    .tabs-wrapper { flex-direction: column; border-radius: 15px; margin-top: 1rem;}
+    .tab-btn { border-radius: 8px; }
+}
+
+/* --- Action & Solution Cards Layout --- */
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    border-top: 5px solid var(--border);
+}
+
+@keyframes gapping {
+    0% { gap: 6px; }
+    100% { gap: 10px; }
+}
+
+
+/* bottom half*/
+.split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .split-grid { grid-template-columns: 1fr; }
+    .tabs-wrapper { flex-direction: column; border-radius: 15px; margin-top: 1rem;}
+    .tab-btn { border-radius: 8px; }
+}
+
+/* --- Action & Solution Cards Layout --- */
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    border-top: 5px solid var(--border);
+}
+
+.card.gov-card { border-top-color: var(--secondary); }
+.card.better-card { border-top-color: var(--primary); }
+
+.card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card.gov-card h3 { color: var(--secondary); }
+.card.better-card h3 { color: var(--primary); }
+
+/* --- Bullet Points Elements --- */
+.action-list {
+    list-style: none;
+}
+
+.action-list li {
+    position: relative;
+    padding-left: 1.8rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.98rem;
+}
+
+.gov-card .action-list li::before {
+    content: "🏛️";
+    position: absolute;
+    left: 0;
+    top: 1px;
+}
+
+.better-card .action-list li::before {
+    content: "💡";
+    position: absolute;
+    left: 0;
+    top: 1px;
+}
+
+.action-list strong {
+    color: #0f172a;
+    display: block;
+    margin-bottom: 0.2rem;
+}
+.apply{
+    margin: 20px auto 0;
+    display: block; 
+    height: 40px;
+    width: 100px;
+    background-color: rgb(25, 25, 240);
+    color: white;
+    font-weight: 700;
+    border-radius: 20px;
+}
+/* --- Footer Section --- */
+footer {
+    background-color: var(--dark);
+    color: #94a3b8;
+    text-align: center;
+    padding: 2.5rem;
+    font-size: 0.9rem;
+    border-top: 1px solid #334155;
+        }
