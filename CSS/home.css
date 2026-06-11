@@ -1,0 +1,215 @@
+body {
+    background: linear-gradient(90deg, #ffffff, #ffffff, #ffffff, #ffffff);
+    color: #000000;
+    transition: color 0.5s ease;
+    font-family: sans-serif;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    position: relative;
+
+}
+
+
+nav {
+    display: flex;
+    position: sticky;
+    color: black;
+    top: 0;
+    left: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; /* Pushes Logo left, Switch right */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+.nav-animate-load {
+    animation: gapping 2s 1 forwards;
+}
+
+.center-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    /* No absolute positioning needed; flexbox handles centering */
+}
+
+.container-animate-load {
+    animation: gapping 2s 1 forwards, container-stretch 3s 1 forwards;
+}
+
+#b1, #b2, #b3, #b4, #b5,#b6 {
+    height: 30px;
+    width: 120px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-size: 300% 100%;
+    transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+#b1:hover, #b2:hover, #b3:hover, #b4:hover, #b5:hover, #b6:hover {
+    background: linear-gradient(90deg, rgb(255, 255, 255), #06c0cd, #0bb2a4, rgb(255, 255, 255));
+    color: rgb(0, 0, 0);
+    background-position: 100% 0;
+    transform: translateY(-3px);
+    border: 2px solid black;
+    font-weight: 700;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto; /* Prevents logo from shrinking/growing */
+    z-index: 10;
+    cursor: pointer;
+}
+
+.logo img {
+    height: 60px; 
+    width: auto;
+    display: block;
+}
+
+.nav-btn {
+    background: linear-gradient(90deg, rgb(201, 227, 3), #2bff00, #bd00ff, rgb(201, 227, 3));
+    transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    font-weight: 700;
+}
+
+.title-class-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 2.5rem; 
+    letter-spacing: -0.02em; 
+    color: #1c2b22; 
+    margin-bottom: 0.5rem;
+}
+
+.light {
+    position: relative;
+    font-weight: bold; 
+    border: none;
+    cursor: pointer;
+    overflow: hidden; 
+    transition: background-image 0.5s ease-out;
+    background-image: radial-gradient(
+        circle 20px at var(--x, 0px) var(--y, 0px), 
+        rgba(141, 255, 124, var(--opacity, 0.25)) 0%,              
+        transparent 100%                                            
+    );
+}
+
+.glow-particle {
+    position: absolute;
+    width: 100px; 
+    height: 100px;
+    border-radius: 50px;
+    transform: translate(-50%, -50%); 
+    pointer-events: none; 
+    background-image: radial-gradient(
+        circle 150px at center, 
+        rgb(255, 230, 0) 0%,              
+        transparent 100%                                                                                                
+    );
+    opacity: 0.3;
+}
+
+#bgCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.switch {
+    position: relative; /* Changed from absolute to relative */
+    right: auto;
+    top: auto;
+    transform: none;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    flex: 0 0 auto; /* Prevents switch from shrinking/growing */
+    z-index: 10;
+    margin-left: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .slider {
+    background-color: #000766;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #4cd964;
+}
+
+@keyframes container-stretch {
+    0% {
+        transform: scaleX(0.65);
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes gapping {
+    0% { gap: 15px; }
+    100% { gap: 18px; }
+}
+
+@keyframes blink {
+    0% { background-color: rgb(201, 227, 3); }
+    25% { background-color: #00ff87; }
+    50% { background-color: #00d2ff; }
+    75% { background-color: #3a7bd5; }
+    100% { background-color: rgb(201, 227, 3); }
+}   

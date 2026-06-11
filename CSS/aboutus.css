@@ -1,0 +1,85 @@
+body {
+    background: linear-gradient(90deg, #ffffff, #ffffff, #ffffff, #ffffff);
+    color: #000000;
+    transition: color 0.5s ease;
+    font-family: sans-serif;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    position: relative;
+
+}
+
+
+nav {
+    display: flex;
+    position: sticky;
+    color: black;
+    top: 0;
+    left: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; /* Pushes Logo left, Switch right */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+#b0 , #b1, #b2, #b3, #b4, #b5,#b6 {
+    height: 30px;
+    width: 120px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-size: 300% 100%;
+    transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+#b0:hover , #b1:hover, #b2:hover, #b3:hover, #b4:hover, #b5:hover, #b6:hover {
+    background: linear-gradient(90deg, rgb(255, 255, 255), #06c0cd, #0bb2a4, rgb(255, 255, 255));
+    color: rgb(0, 0, 0);
+    background-position: 100% 0;
+    transform: translateY(-3px);
+    border: 2px solid black;
+    font-weight: 700;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.logo img {
+    height: 60px; 
+    width: auto;
+    display: block;
+}
+
+.nav-btn {
+    background: linear-gradient(90deg, rgb(201, 227, 3), #2bff00, #bd00ff, rgb(201, 227, 3));
+    transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    font-weight: 700;
+}
+
+.center-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    /* No absolute positioning needed; flexbox handles centering */
+}
+
+.container-animate-load {
+    animation: gapping 2s 1 forwards, container-stretch 3s 1 forwards;
+}
