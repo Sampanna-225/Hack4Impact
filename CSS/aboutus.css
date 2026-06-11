@@ -44,7 +44,7 @@ nav {
 }
 
 #b0:hover , #b1:hover, #b2:hover, #b3:hover, #b4:hover, #b5:hover, #b6:hover {
-    background: linear-gradient(90deg, rgb(255, 255, 255), #06c0cd, #0bb2a4, rgb(255, 255, 255));
+    background: linear-gradient(90deg, rgb(255, 0, 0), #cd0606, #0bb2a4, rgb(255, 255, 255));
     color: rgb(0, 0, 0);
     background-position: 100% 0;
     transform: translateY(-3px);
@@ -67,10 +67,27 @@ nav {
     display: block;
 }
 
+.flag{
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.flag img{
+    height: 38px;
+    width: auto;
+    display: block;
+}
+
 .nav-btn {
-    background: linear-gradient(90deg, rgb(201, 227, 3), #2bff00, #bd00ff, rgb(201, 227, 3));
-    transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    font-weight: 700;
+    background: linear-gradient(90deg, #1093da, #5e2ce0, #9d00ff, #1093da);
+    background-size: 300% 100%;
+    background-position: 0% 0%;
+    color: #ffffff;
+    border: 2px solid #e1e1e1;
+    transition: background-position 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .center-buttons {
@@ -82,4 +99,23 @@ nav {
 
 .container-animate-load {
     animation: gapping 2s 1 forwards, container-stretch 3s 1 forwards;
+}
+
+.light {
+    position: relative;
+    font-weight: bold; 
+    border: none;
+    cursor: pointer;
+    overflow: hidden; 
+    transition: background-image 0.5s ease-out;
+    background-image: radial-gradient(
+        circle 20px at var(--x, 0px) var(--y, 0px), 
+        rgba(0, 0, 225, var(--opacity, 0.25)) 0%,              
+        transparent 100%                                            
+    );
+}
+
+@keyframes gapping {
+    0% { gap: 1px; }
+    100% { gap: 20px; }
 }
