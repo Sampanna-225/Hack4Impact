@@ -1,4 +1,3 @@
-
 :root {
     --primary: rgb(204, 20, 20);
     --primary-light: #e8f5e9;
@@ -19,9 +18,18 @@
 }
 
 body {
-    background-color: var(--light);
-    color: var(--dark);
-    line-height: 1.6;
+    background-color: rgb(39, 33, 33);
+    color: #000000;
+    transition: color 0.5s ease;
+    font-family: sans-serif;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    position: relative;
 
 }
 
@@ -29,7 +37,7 @@ body {
 
 nav {
     border: 2px solid black;
-    background: linear-gradient(90deg, rgb(56, 21, 3), #722b01, #944203, rgb(56, 21, 3));
+    background-color: rgb(39, 33, 33);
     display: flex;
     position: sticky;
     color: black;
@@ -43,8 +51,107 @@ nav {
     height: 50px;
     padding: 0 20px;
     box-sizing: border-box;
-    z-index: 1000;
-}  
+    z-index: 100;
+}
+
+header{
+    background-color: #040dc2;
+    width: 100%;
+    display: flex;
+    height: 150px;
+    justify-content: center;
+}
+
+#ti{
+    padding-top: 42px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 800px;
+    color: #e2e8f0;
+}
+
+#Inputing {
+    width: 700px;
+    height: 500px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;             
+    border: 1px solid #ccc;
+    border-radius: 30px;  
+    background-color: #e2e8f0;
+}
+
+#Inputing-box {
+    background-color: #0bb2a4;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px 15px; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    align-items: center;
+}   
+
+#Inputing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 600px;
+  background-color: #f4f4f4;
+  margin: 0; /* Remove default form margins */
+}
+
+#Inputing-box {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr; /* Single column */
+  gap: 15px; /* Even spacing between all items */
+  background: rgb(47, 232, 112);
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Uniform input styling */
+#Inputing-box input, 
+#Inputing-box textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+/* Make Description visually distinct/larger if needed */
+#Inputing-box textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Label styling */
+#Inputing-box label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: -10px; /* Pulls label closer to input if gap feels too large */
+}
+
+/* Button styling */
+#Inputing-box button {
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+#Inputing-box button:hover {
+  background-color: #0056b3;
+}   
 
 .center-buttons {
     display: flex;
@@ -109,8 +216,7 @@ nav {
 
 .campaign-hero {
     background: url('../data/banner.png');
-    background-size: cover;
-    margin-top: 50px;
+    background-color: cover;
     padding-top: 20px;
     width: 100%;
     height: 560px;
@@ -137,7 +243,7 @@ nav {
     border: 2px solid black;
     max-width: 800px;
     max-height: 80px;
-    margin: -2rem auto 0rem auto;
+    margin: -1rem auto 0rem auto;
     background: rgb(24, 6, 73);
     padding: 0.5rem;
     border-radius: 50px;
@@ -150,7 +256,7 @@ nav {
 
 .tab-btn {
     flex: 1;
-    padding: -1rem 1.5rem;
+    padding: 1rem 1.5rem;
     border: none;
     background: transparent;
     font-size: 1rem;
@@ -222,84 +328,4 @@ nav {
 @keyframes gapping {
     0% { gap: 6px; }
     100% { gap: 10px; }
-}
-
-
-/* bottom half*/
-.split-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
-    margin-top: 2rem;
-}
-
-@media (max-width: 768px) {
-    .split-grid { grid-template-columns: 1fr; }
-    .tabs-wrapper { flex-direction: column; border-radius: 15px; margin-top: 1rem;}
-    .tab-btn { border-radius: 8px; }
-}
-
-/* --- Action & Solution Cards Layout --- */
-.card {
-    background: white;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-    border-top: 5px solid var(--border);
-}
-
-.card.gov-card { border-top-color: var(--secondary); }
-.card.better-card { border-top-color: var(--primary); }
-
-.card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.card.gov-card h3 { color: var(--secondary); }
-.card.better-card h3 { color: var(--primary); }
-
-/* --- Bullet Points Elements --- */
-.action-list {
-    list-style: none;
-}
-
-.action-list li {
-    position: relative;
-    padding-left: 1.8rem;
-    margin-bottom: 1.2rem;
-    font-size: 0.98rem;
-}
-
-.gov-card .action-list li::before {
-    content: "🏛️";
-    position: absolute;
-    left: 0;
-    top: 1px;
-}
-
-.better-card .action-list li::before {
-    content: "💡";
-    position: absolute;
-    left: 0;
-    top: 1px;
-}
-
-.action-list strong {
-    color: #0f172a;
-    display: block;
-    margin-bottom: 0.2rem;
-}
-.apply{
-    margin: 20px auto 0;
-    display: block; 
-    height: 40px;
-    width: 100px;
-    background-color: rgb(25, 25, 240);
-    color: white;
-    font-weight: 700;
-    border-radius: 20px;
 }

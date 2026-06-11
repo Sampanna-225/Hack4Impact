@@ -2,7 +2,7 @@
 const buttons = document.querySelectorAll('.nav-btn');
 function Button_hover(){
     buttons.forEach(button => {
-            button.style.background = 'linear-gradient(90deg, #da1010, #e02c2c, #9d00ff, #1093da)';
+            button.style.background = 'linear-gradient(90deg, #ae0606, #ce1717, #9d00ff, #1093da)';
             button.style.color = "#ffffff";
             button.style.border = "2px solid #e1e1e1";
             button.style.backgroundSize = '300% 100%';
@@ -10,7 +10,7 @@ function Button_hover(){
             button.style.transition = 'background-position 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease';
     
         button.onmouseenter = function() {
-            this.style.background = 'linear-gradient(90deg, #f30c0c, #ed1000, #ff0000, #0015ff)';
+            this.style.background = 'linear-gradient(90deg, #e40c0c, #e82214, #ff0000, #0015ff)';
             this.style.backgroundPosition = '100% 0';
             this.style.backgroundSize = '300% 100%';
             this.style.transform = 'translateY(-3px)';
@@ -18,7 +18,7 @@ function Button_hover(){
         };
 
         button.onmouseleave = function() {
-            this.style.background = 'linear-gradient(90deg, #f51e1e, #e02c2c, #9d00ff, #1093da)';
+            this.style.background = 'linear-gradient(90deg,#ae0606, #ce1717, #9d00ff, #1093da)';
             this.style.backgroundPosition = '0% 0%';
             this.style.backgroundSize = '300% 100%';
             this.style.transform = 'translateY(0)';
