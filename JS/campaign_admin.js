@@ -27,20 +27,94 @@ function Button_hover(){
 }
 Button_hover()
 
-// Hover input
+// Change classes
 function switchCampaign(event, campaignId) {
-        // Hide all active content panels
-        const panels = document.querySelectorAll('.campaign-panel');
-        panels.forEach(panel => panel.classList.remove('active-panel'));
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
 
-        // Remove active style classes from all interaction buttons
-        const buttons = document.querySelectorAll('.tab-btn');
-        buttons.forEach(btn => btn.classList.remove('active'));
-
-        // Show selected panel and add active style to clicked button
-        document.getElementById(campaignId).classList.add('active-panel');
-        event.currentTarget.classList.add('active');
+    event.currentTarget.classList.add('active');
+    
+    const categoryInput = document.getElementById('in-category');
+    if (categoryInput) {
+        categoryInput.value = campaignId;
+        console.log(`Switched active database category to: ${campaignId}`);
     }
 
+    // 🎨 Dynamic Form Background Color Change
+    const formElement = document.getElementById('Inputing');
+    if (formElement) {
+        // Map your tab IDs to the exact background colors you want
+        const colorMap = {
+            'air': '#ed26c9',     
+            'waste': '#b83030',   
+            'traffic': '#7f1096', 
+            'bagmati': '#36bd1e'  
+        };
+
+        // Apply the color based on the active tab (fallback to slate if not found)
+        formElement.style.backgroundColor = colorMap[campaignId] || '#e2e8f0';
+        
+        // Optional: Smooth out the color change with a transition animation
+        formElement.style.transition = 'background-color 0.4s ease';
+    }
+}
+
 //To get the data from the input and send a json payload.
-const title = document.getElementById('')
+
+async function input(event){
+    event.preventDefault();
+    
+    const title = document.getElementById('in-title').value;
+    const locat = document.getElementById('in-loca').value;
+    const institution = document.getElementById('in-comp').value;
+    const description = document.getElementById('in-des').value;
+    const link = document.getElementById('in-link').value;
+    const category = document.getElementById('in-category').value; // ADDED
+    
+    if(!title || !locat || !institution || !description || !link){
+        alert('Please fill in all fields');
+        return;
+    }
+    
+    const campaign_payload = {
+        t : title,
+        l : locat,
+        i : institution,
+        d : description,
+        li : link,
+        c : category 
+    };
+    
+    try{
+        const response = await fetch('http://127.0.0.1:8000/api/campaign',{
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(campaign_payload)
+        });
+        
+        if(!response.ok){
+            throw new Error(`HTTP Error Status: ${response.status}`);
+        }
+        
+        document.getElementById('Inputing').reset();
+        // Reset hidden category default back to whatever tab is visually active
+        document.getElementById('in-category').value = 'air'; 
+        
+        alert('Campaign submitted successfully!');
+        broadcast_refresh();
+    }
+    catch (error){
+        console.error("Transmission Failure:", error);
+        alert('Failed to submit campaign. Please try again.');
+    }
+}
+
+function broadcast_refresh(){
+    try {
+        const channel = new BroadcastChannel('campaign-update');
+        channel.postMessage({ action: 'refresh' });
+        channel.close();
+    } catch (error) {
+        console.warn('BroadcastChannel not supported:', error);
+    }
+}

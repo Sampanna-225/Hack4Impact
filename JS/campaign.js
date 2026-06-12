@@ -10,7 +10,27 @@ document.addEventListener("DOMContentLoaded", () => {
     if (buttonContainer) {
         buttonContainer.addEventListener('animationend', (e) => {});
     }
+    
+    // Listen for refresh broadcasts from admin page
+    listen_for_refresh();
 });
+
+//Listen for campaign updates from other tabs/windows
+function listen_for_refresh(){
+    try {
+        const channel = new BroadcastChannel('campaign-update');
+        channel.onmessage = (event) => {
+            if(event.data.action === 'refresh'){
+                console.log('Campaign update detected, refreshing...');
+                reseiving_packets();
+            }
+        };
+    } catch (error) {
+        console.warn('BroadcastChannel not supported:', error);
+        // Fallback: refresh every 10 seconds if BroadcastChannel not available
+        setInterval(reseiving_packets, 10000);
+    }
+}
 
 //To switch between topics
 function switchCampaign(event, campaignId) {
@@ -56,3 +76,99 @@ function Button_hover(){
     });
 }
 Button_hover()
+
+//The backend campaign receiving end.
+
+//For infrastructure: 
+document.addEventListener("DOMContentLoaded", () => {
+    const mainNav = document.getElementById('Nav');
+    const buttonContainer = document.querySelector('.center-buttons');
+    
+    listen_for_refresh();
+});
+
+function listen_for_refresh(){
+    try {
+        const channel = new BroadcastChannel('campaign-update');
+        channel.onmessage = (event) => {
+            if(event.data.action === 'refresh'){
+                console.log('Campaign update detected, refreshing...');
+                receiving_packets(); // FIXED TYPO
+            }
+        };
+    } catch (error) {
+        console.warn('BroadcastChannel not supported:', error);
+        setInterval(receiving_packets, 10000); // FIXED TYPO
+    }
+}
+
+function switchCampaign(event, campaignId) {
+    const panels = document.querySelectorAll('.campaign-panel');
+    panels.forEach(panel => panel.classList.remove('active-panel'));
+
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+
+    document.getElementById(campaignId).classList.add('active-panel');
+    event.currentTarget.classList.add('active');
+}
+
+// ... (Button_hover logic remains unchanged)
+
+function render_campaign(campaignsArray) {
+    // Clear out any previously generated dynamic cards so we don't duplicate them on refresh
+    const oldDynamicCards = document.querySelectorAll('.dynamic-card');
+    oldDynamicCards.forEach(card => card.remove());
+    
+    const types = ['card gov-card', 'card better-card'];
+    
+    campaignsArray.forEach(campaign => {
+        // Find target grid based on the campaign's category (air, waste, traffic, bagmati)
+        const targetGrid = document.getElementById(`${campaign.c}-grid`);
+        
+        if (!targetGrid) return; // Guard clause if category match fails
+
+        const card = document.createElement('div');
+        const randomIndex = Math.floor(Math.random() * types.length);
+        
+        // We give it a 'dynamic-card' flag so we can wipe and rebuild cleanly later
+        card.className = `${types[randomIndex]} dynamic-card`; 
+
+        card.innerHTML = `
+            <h3>${campaign.t}</h3>
+            <ul class="action-list">
+                <li><b>Location: </b>${campaign.l}</li>
+                <li><b>Institution: </b>${campaign.i}</li>
+                <li>
+                    <strong>Info: </strong>
+                    ${campaign.d}
+                </li>
+                <br>
+                <a href="${campaign.li}" target="_blank">
+                    <button class="apply">Apply</button>
+                </a>
+            </ul>
+        `;
+
+        targetGrid.appendChild(card);
+    });
+}
+
+// Renamed slightly for standard clean spelling
+async function receiving_packets() {
+    try {
+        const response = await fetch('http://127.0.0.1:8000/api/campaign');
+
+        if (!response.ok) {
+            throw new Error(`HTTPS error! Status: ${response.status}`);
+        }
+        const campaign_data = await response.json();
+        render_campaign(campaign_data);
+    }
+    catch(error) {
+        console.error("Failed to receive payload: ", error);
+    }
+}
+
+// Initial fetch on page load
+receiving_packets();
