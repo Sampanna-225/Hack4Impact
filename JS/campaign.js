@@ -51,7 +51,7 @@ function switchCampaign(event, campaignId) {
 const buttons = document.querySelectorAll('.nav-btn');
 function Button_hover(){
     buttons.forEach(button => {
-            button.style.background = 'linear-gradient(90deg, #da1010, #e02c2c, #9d00ff, #1093da)';
+            button.style.background = 'linear-gradient(90deg, #c20f0f, #d11e1e, #9d00ff, #1093da)';
             button.style.color = "#ffffff";
             button.style.border = "2px solid #e1e1e1";
             button.style.backgroundSize = '300% 100%';
@@ -67,7 +67,7 @@ function Button_hover(){
         };
 
         button.onmouseleave = function() {
-            this.style.background = 'linear-gradient(90deg, #f51e1e, #e02c2c, #9d00ff, #1093da)';
+            this.style.background = 'linear-gradient(90deg, #c11111, #e02c2c, #9d00ff, #1093da)';
             this.style.backgroundPosition = '0% 0%';
             this.style.backgroundSize = '300% 100%';
             this.style.transform = 'translateY(0)';
