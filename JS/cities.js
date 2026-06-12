@@ -126,7 +126,7 @@ function Button_hover(){
             button.style.transition = 'background-position 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease';
     
         button.onmouseenter = function() {
-            this.style.background = 'linear-gradient(90deg, #e40c0c, #e82214, #ff0000, #0015ff)';
+            this.style.background = 'linear-gradient(90deg, #e40c0c, #e82214, #ff0000, #0b0f7b)';
             this.style.backgroundPosition = '100% 0';
             this.style.backgroundSize = '300% 100%';
             this.style.transform = 'translateY(-3px)';
