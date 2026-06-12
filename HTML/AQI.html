@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepal Live Air Quality Index (AQI) Dashboard</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="../CSS/AQI.css"
+    
+    <style>
+
+    </style>
+</head>
+<body>
+    <header id="navi">
+            <nav class="light nav-animate-load" id="Nav">
+                <label class="logo">
+                    <a href="../HTML/aboutus.html">
+                        <img src="../data/logo.png">
+                    </a>
+                </label>
+                
+                <div class="center-buttons container-animate-load">
+                    <a href="../HTML/home.html">
+                        <button class="nav-btn" id="b0">Home</button>
+                    </a>
+
+                    <a href="../HTML/cities.html">
+                        <button class="nav-btn" id="b1">Cities</button>
+                    </a>
+
+                    <a href="../HTML/campaign.html">
+                        <button class="nav-btn" id="b2">Campaigns</button>
+                    </a>
+
+                    <a href="../HTML/news.html">
+                    <button class="nav-btn" id="b3">News</button>
+                    </a>
+
+                    <button class="nav-btn" id="b4">Services</button>
+
+                    <button class="nav-btn" id="b6">User</button>
+                </div>
+                
+                <div class="switch">
+                    <span class="flag">
+                        <img src="../data/flag.png" alt="flag">
+                    </span>
+                </div>
+            </nav>
+        </header>
+    <div class="dashboard-container">
+        
+        <header class="aqi-header">
+            <h1>Real-Time Air Quality Index (AQI) Tracker</h1>
+            <p>Live environmental telemetry index updates for major cities across Nepal. (Data Source: 2026 Live Station Network)</p>
+        </header>
+
+        <div class="summary-grid">
+            <div class="summary-card">
+                <span class="summary-title">How Polluted Is Nepal?</span>
+                <div class="aqi-main-value">106 <span>AQI US</span></div>
+                <div class="aqi-badge color-unhealthy-sensitive">Unhealthy for Sensitive Groups</div>
+            </div>
+            <div class="summary-card">
+                <span class="summary-title">Current Fine Particles (PM2.5)</span>
+                <div class="aqi-main-value">37.4 <span>µg/m³</span></div>
+                <p style="margin:0; font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem;">
+                    <strong>7.5 times</strong> the World Health Organization annual air quality guideline limit value.
+                </p>
+            </div>
+            <div class="summary-card">
+                <span class="summary-title">Global Air Pollution Country Rank</span>
+                <div class="aqi-main-value">12<span>/ 143</span></div>
+                <div class="aqi-badge" style="background-color: #e2e8f0; color: var(--primary-blue)">12th Most Polluted Country</div>
+            </div>
+        </div>
+
+        <section class="map-section">
+            <div class="map-title-bar">
+                <span class="hmphh"> Live Visual Pollution Heat Map (Nepal Grid)</span>
+                <span style="font-size:0.8rem; background:rgba(255,255,255,0.2); padding:0.2rem 0.5rem; border-radius:4px;">Interactive Map Canvas</span>
+            </div>
+            
+            <div id="pollutionMap"></div>
+            
+            <div class="map-legend">
+                <div class="legend-item color-good">Good (0-50)</div>
+                <div class="legend-item color-moderate">Moderate (51-100)</div>
+                <div class="legend-item color-unhealthy-sensitive">Sensitive (101-150)</div>
+                <div class="legend-item color-unhealthy">Unhealthy (151-200)</div>
+                <div class="legend-item color-very-unhealthy">Hazardous (201+)</div>
+            </div>
+        </section>
+
+        <div class="rankings-grid">
+            
+            <div class="ranking-box">
+                <div class="ranking-title"> Live Most Polluted Cities Ranking</div>
+                <table class="ranking-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>City Name</th>
+                            <th style="text-align:right">AQI US</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="rank-number">1</td><td>Bharatpur</td><td class="aqi-score-col"><span class="aqi-inline-box color-unhealthy-sensitive">110</span></td></tr>
+                        <tr><td class="rank-number">2</td><td>Patan</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">75</span></td></tr>
+                        <tr><td class="rank-number">3</td><td>Birendranagar</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">73</span></td></tr>
+                        <tr><td class="rank-number">4</td><td>Kathmandu</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">70</span></td></tr>
+                        <tr><td class="rank-number">5</td><td>Siddharthanagar</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">68</span></td></tr>
+                        <tr><td class="rank-number">6</td><td>Hetauda</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">67</span></td></tr>
+                        <tr><td class="rank-number">7</td><td>Changunarayan</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">66</span></td></tr>
+                        <tr><td class="rank-number">8</td><td>Bhaktapur</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">63</span></td></tr>
+                        <tr><td class="rank-number">9</td><td>Kirtipur</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">63</span></td></tr>
+                        <tr><td class="rank-number">10</td><td>Pokhara</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">63</span></td></tr>
+                    </tbody>
+                </table>
+                <div class="historical-badge-banner"style="background-color: rgb(2, 11, 81); border-left-color: rgba(196, 17, 17, 0.85);">
+                      <strong class="sup">2025 Annual Data:</strong><p8 class="sup"> Patan was rated the most polluted city overall with a baseline avg score of 117.</p8>
+                </div>
+            </div>
+
+            <div class="ranking-box">
+                <div class="ranking-title"> Live Cleanest Cities Ranking</div>
+                <table class="ranking-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>City Name</th>
+                            <th style="text-align:right">AQI US</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="rank-number">1</td><td>Madhyapur Thimi</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">60</span></td></tr>
+                        <tr><td class="rank-number">2</td><td>Kirtipur</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">63</span></td></tr>
+                        <tr><td class="rank-number">3</td><td>Pokhara</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">63</span></td></tr>
+                        <tr><td class="rank-number">4</td><td>Bhaktapur</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">64</span></td></tr>
+                        <tr><td class="rank-number">5</td><td>Hetauda</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">67</span></td></tr>
+                        <tr><td class="rank-number">6</td><td>Birendranagar</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">71</span></td></tr>
+                        <tr><td class="rank-number">7</td><td>Siddharthanagar</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">71</span></td></tr>
+                        <tr><td class="rank-number">8</td><td>Changunarayan</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">73</span></td></tr>
+                        <tr><td class="rank-number">9</td><td>Kathmandu</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">81</span></td></tr>
+                        <tr><td class="rank-number">10</td><td>Patan</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">81</span></td></tr>
+                    </tbody>
+                </table>
+                <div class="historical-badge-banner" style="background-color: rgb(2, 11, 81); border-left-color: rgba(196, 17, 17, 0.85);">
+                      <strong class="sup">2025 Annual Data:</strong><p9 class="sup"> Madhyapur Thimi tracked as cleanest urban zone at a baseline index of 81.</p9>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ranking-box" style="margin-bottom: 2rem;">
+            <div class="ranking-title">Real-time Micro-Station Monitoring: Patan Focus Area</div>
+            <table class="ranking-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Hyperlocal Station Node Location</th>
+                        <th style="text-align:right">Current AQI US</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="rank-number">1</td><td>Lagankhel (SC - 05) - GD Labs</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate" style="background:#3A1753; color:white;">96</span></td></tr>
+                    <tr><td class="rank-number">2</td><td>Imadol (SC-27) - GD Labs</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">88</span></td></tr>
+                    <tr><td class="rank-number">3</td><td>Lalitpur Jawalakhel</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">84</span></td></tr>
+                    <tr><td class="rank-number">4</td><td>Herne Katha Office</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">83</span></td></tr>
+                    <tr><td class="rank-number">5</td><td>Khokana (SC-41) - GD Labs</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">80</span></td></tr>
+                    <tr><td class="rank-number">6</td><td>Kwalkhu, Patan Durbar Square</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">80</span></td></tr>
+                    <tr><td class="rank-number">7</td><td>CEN-SR-25: Patako Chowk</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">79</span></td></tr>
+                    <tr><td class="rank-number">8</td><td>Bhaisipati - KTM Grid</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">71</span></td></tr>
+                    <tr><td class="rank-number">9</td><td>Embassy of Switzerland in Nepal</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">71</span></td></tr>
+                    <tr><td class="rank-number">10</td><td>Khumaltar Campus Hub</td><td class="aqi-score-col"><span class="aqi-inline-box color-moderate">68</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="ranking-box">
+            <div class="ranking-title"> Global Context: Worst Polluted Sovereign Countries Matrix (2025 Average)</div>
+            <table class="ranking-table">
+                <thead>
+                    <tr>
+                        <th>Global Rank</th>
+                        <th>Country Name</th>
+                        <th>Population Count</th>
+                        <th style="text-align:right">Avg AQI US Band</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="rank-number">1</td><td>Pakistan</td><td>231,402,117</td><td class="aqi-score-col"><span class="aqi-inline-box color-unhealthy">159</span></td></tr>
+                    <tr><td class="rank-number">2</td><td>Bangladesh</td><td>169,356,251</td><td class="aqi-score-col"><span class="aqi-inline-box color-unhealthy">158</span></td></tr>
+                    <tr><td class="rank-number">3</td><td>Tajikistan</td><td>9,750,064</td><td class="aqi-score-col"><span class="aqi-inline-box color-unhealthy">152</span></td></tr>
+                    <tr><td class="rank-number">6</td><td>India</td><td>1,407,563,842</td><td class="aqi-score-col"><span class="aqi-inline-box color-unhealthy-sensitive">134</span></td></tr>
+                    <tr style="background-color: #fffbeb; border: 2px solid var(--iqair-orange);"><td class="rank-number">12</td><td><strong>Nepal</strong></td><td><strong>30,034,989</strong></td><td class="aqi-score-col"><span class="aqi-inline-box color-unhealthy-sensitive">106</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <script src="../JS/AQI.js">
+        
+    </script>
+</body>
+</html>

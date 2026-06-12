@@ -1,0 +1,396 @@
+    :root {
+        --slate-900: #0f172a;
+        --slate-800: #1e293b;
+        --slate-700: #334155;
+        --slate-600: #475569;
+        --emerald-600: #059669;
+        --amber-600: #d97706;
+        --crimson-600: #dc2626;
+        --blue-600: #072054;
+        --bg-canvas: #ffffff;
+        --border-color: #e2e8f0;
+        --shadow-sm: 0 1px 3px 0 rgba(0,0,0,0.1);
+        --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05);
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-canvas);
+        color: var(--slate-900);
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+    }
+
+    .app-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    /* Platform Navigation Banner Header */
+    .app-header {
+        background:linear-gradient(rgba(196, 17, 17, 0.85), rgb(2, 11, 81));
+        color: white;
+        padding: 2.5rem 2rem;
+        border-radius: 16px;
+        box-shadow: var(--shadow-md);
+        margin-bottom: 2rem;
+        
+    }
+
+    .app-header h1 {
+        margin: 0 0 0.5rem 0;
+        font-size: 2.25rem;
+        font-weight: 800;
+    }
+
+    .app-header p {
+        margin: 0;
+        color: #94a3b8;
+        font-size: 1.05rem;
+    }
+
+    /* GIS Map Layout Framework Module */
+    .map-section {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+        margin-bottom: 2.5rem;
+        border: 1px solid var(--border-color);
+    }
+
+    .map-banner-strip {
+        background: #000339;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        font-weight: 700;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    #parkingServerMap {
+        height: 480px;
+        width: 100%;
+        z-index: 1;
+    }
+
+    /* Grid Framework Layout Alignment */
+    .section-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--slate-900);
+        margin-bottom: 1.25rem;
+        border-bottom: 3px solid var(--border-color);
+        padding-bottom: 0.5rem;
+    }
+
+    .parking-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 3.5rem;
+    }
+
+    .parking-card {
+        background: white;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.25rem;
+        box-shadow: var(--shadow-sm);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .parking-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--blue-600);
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+    }
+
+    .card-header-info h3 {
+        margin: 0 0 0.4rem 0;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--slate-900);
+    }
+
+    .card-type-tag {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        margin-bottom: 0.75rem;
+    }
+
+    .tag-public { background: #e0f2fe; color: #0369a1; }
+    .tag-lot { background: #f1f5f9; color: #475569; }
+    .tag-garage { background: #faf5ff; color: #6b21a8; }
+    .tag-free { background: #dcfce7; color: #166534; }
+
+    .card-meta-line {
+        font-size: 0.85rem;
+        color: var(--slate-600);
+        margin: 0.25rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    .card-review-block {
+        margin-top: 1rem;
+        background: #f8fafc;
+        border-left: 3px solid #cbd5e1;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+        font-style: italic;
+        color: var(--slate-700);
+        border-radius: 0 6px 6px 0;
+    }
+
+    .flyto-action-btn {
+        width: 100%;
+        margin-top: 1.25rem;
+        background: rgb(155, 8, 8);
+        color: white;
+        border: none;
+        padding: 0.5rem 0;
+        font-weight: 700;
+        font-size: 0.85rem;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.15s, color 0.15s;
+    }
+
+    .parking-card:hover .flyto-action-btn {
+        background: var(--blue-600);
+        color: white;
+    }
+
+    /* Rules Information Content Hub Block */
+    .rules-content-wrapper {
+        background: white;
+        border-radius: 16px;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-md);
+        padding: 2.5rem 2rem;
+    }
+
+    .editorial-lead {
+        font-size: 1.1rem;
+        color: var(--slate-700);
+        line-height: 1.7;
+        margin-bottom: 2rem;
+    }
+
+    .info-panel-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .info-panel-node {
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        padding: 1.5rem;
+        background: var(--bg-canvas);
+    }
+
+    .info-panel-node h4 {
+        margin: 0 0 0.75rem 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    /* Structured Tables Compilation Styles */
+    .table-responsive-box {
+        width: 100%;
+        overflow-x: auto;
+        margin: 1.5rem 0 2.5rem 0;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+    }
+
+    .data-matrix-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 0.9rem;
+    }
+
+    .data-matrix-table th {
+        background: var(--slate-900);
+        color: white;
+        padding: 0.75rem 1rem;
+        font-weight: 700;
+    }
+
+    .data-matrix-table td {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .data-matrix-table tr:nth-child(even) {
+        background: #f8fafc;
+    }
+
+    /* Sequential Instruction Box List */
+    .instruction-steps-list {
+        padding-left: 1.25rem;
+        margin: 1rem 0;
+    }
+
+    .instruction-steps-list li {
+        margin-bottom: 0.75rem;
+    }
+
+    @media(max-width: 768px) {
+        #parkingServerMap { height: 350px; }
+        .rules-content-wrapper { padding: 1.5rem 1rem; }
+    }
+        footer {
+        background-color: var(--dark);
+        color: #94a3b8;
+        text-align: center;
+        padding: 2.5rem;
+        font-size: 0.9rem;
+        margin-top: 6rem;
+    }
+    nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; /* Keeps Logo left, buttons center, flag right */
+    color: black;
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    box-sizing: border-box;
+
+}
+
+#b0 , #b1, #b2, #b3, #b4, #b5,#b6 {
+    height: 30px;
+    width: 120px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-size: 300% 100%;
+    transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+#b0:hover , #b1:hover, #b2:hover, #b3:hover, #b4:hover, #b5:hover, #b6:hover {
+    background: linear-gradient(90deg, rgb(255, 0, 0), #cd0606, #0bb2a4, rgb(255, 255, 255));
+    color: rgb(0, 0, 0);
+    background-position: 100% 0;
+    transform: translateY(-3px);
+    border: 2px solid black;
+    font-weight: 700;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.logo img {
+    height: 60px; 
+    width: auto;
+    display: block;
+}
+
+.flag{
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.flag img{
+    height: 38px;
+    width: auto;
+    display: block;
+}
+
+.nav-btn {
+    background: linear-gradient(90deg, #1093da, #5e2ce0, #9d00ff, #1093da);
+    background-size: 300% 100%;
+    background-position: 0% 0%;
+    color: #ffffff;
+    border: 2px solid #e1e1e1;
+    transition: background-position 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.center-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    /* No absolute positioning needed; flexbox handles centering */
+}
+
+.container-animate-load {
+    animation: gapping 2s 1 forwards, container-stretch 3s 1 forwards;
+}
+
+.light {
+    position: relative;
+    font-weight: bold; 
+    border: none;
+    cursor: pointer;
+    overflow: hidden; 
+    transition: background-image 0.5s ease-out;
+    background-image: radial-gradient(
+        circle 20px at var(--x, 0px) var(--y, 0px), 
+        rgba(0, 0, 225, var(--opacity, 0.25)) 0%,              
+        transparent 100%                                            
+    );
+}
+
+@keyframes gapping {
+    0% { gap: 1px; }
+    100% { gap: 20px; }
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--primary);
+    text-decoration: none;
+}
+#navi{
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Merged the nice bold shadow here */
+    position: sticky; 
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    border-bottom: 2px solid red;
+}

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kathmandu Smart Parking Locator & Regulation Portal</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="../CSS/parking.css">
+    
+    <style>
+
+    </style>
+</head>
+<body>
+    <header id="navi">
+        <nav class="light nav-animate-load" id="Nav">
+                    <label class="logo">
+                        <a href="../HTML/aboutus.html">
+                            <img src="../data/logo.png">
+                        </a>
+                    </label>
+                    
+                    <div class="center-buttons container-animate-load">
+                        <a href="../HTML/home.html">
+                            <button class="nav-btn" id="b0">Home</button>
+                        </a>
+
+                        <a href="../HTML/cities.html">
+                            <button class="nav-btn" id="b1">Cities</button>
+                        </a>
+
+                        <a href="../HTML/campaign.html">
+                            <button class="nav-btn" id="b2">Campaigns</button>
+                        </a>
+
+                        <a href="../HTML/news.html">
+                        <button class="nav-btn" id="b3">News</button>
+                        </a>
+
+                        <button class="nav-btn" id="b4">Services</button>
+
+                        <button class="nav-btn" id="b6">User</button>
+                    </div>
+                    
+                    <div class="switch">
+                        <span class="flag">
+                            <img src="../data/flag.png" alt="flag">
+                        </span>
+                    </div>
+            </nav>
+        </header>
+    <div class="app-container">
+        
+        <header class="app-header">
+            <h1> Kathmandu Smart Parking Hub</h1>
+            <p>Integrated geographic locator tracking spatial lot positions alongside KMC traffic compliance matrices.</p>
+        </header>
+
+        <section class="map-section">
+            <div class="map-banner-strip"> Interactive Kathmandu Parking Grid Server Terminal</div>
+            <div id="parkingServerMap"></div>
+        </section>
+
+        <h2 class="section-title"> Registered Scraped Parking Facilities</h2>
+        <main class="parking-grid" id="parkingGridInsertionCanvas"></main>
+
+        <article class="rules-content-wrapper">
+            <h2 class="section-title" style="border-bottom-color: var(--crimson-600);"> Kathmandu Traffic & Parking Compliance Codes</h2>
+            
+            <p class="editorial-lead">
+                The chaotic yet vibrant streets of Kathmandu are a constant challenge for drivers. Finding a parking spot can feel like a game of chance, and misunderstanding the rules often leads to frustrating and costly fines. But fear not! This essential guide to Kathmandu parking rules is designed to equip you with the knowledge to avoid fines & find spots with confidence. We’ll break down the latest regulations from the <strong>Kathmandu Metropolitan City (KMC)</strong> and <strong>Nepal Traffic Police</strong>, ensuring your driving experience in the capital is as smooth as possible.
+            </p>
+
+            <div class="info-panel-grid">
+                <div class="info-panel-node" style="border-left: 4px solid var(--blue-600);">
+                    <h4 style="color: var(--blue-600);">Why Regulations Matter</h4>
+                    <p style="font-size: 0.9rem; margin: 0; color: var(--slate-700);">Kathmandu experiences significant traffic congestion, making parking a perennial headache. Knowing where to park legally and efficiently protects your wallet from unexpected Kathmandu parking fines and keeps essential thoroughfares unblocked.</p>
+                </div>
+                <div class="info-panel-node" style="border-left: 4px solid var(--blue-600);">
+                    <h4 style="color: var(--blue-600);">Recent System Updates</h4>
+                    <p style="font-size: 0.9rem; margin: 0; color: var(--slate-700);">The KMC has systematically eliminated roadside on-road parking across core commercial nodes like New Road and Dharmapath, actively shifting vehicles toward dedicated off-street multi-story structures.</p>
+                </div>
+            </div>
+
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-top: 2rem;"> Fee Structure Breakdown Matrix</h3>
+            <p style="font-size: 0.9rem; color: var(--slate-600);">To effectively find parking in Kathmandu, it’s crucial to understand the designated zones and their corresponding charges. The KMC has primarily divided the city into two zones for parking fee collection:</p>
+            
+            <div class="table-responsive-box">
+                <table class="data-matrix-table">
+                    <thead>
+                        <tr>
+                            <th>Parking Location / Type Zone</th>
+                            <th>Two-Wheeler (Bike/Scooter)</th>
+                            <th>Four-Wheeler (Car/Jeep)</th>
+                            <th>Operational Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Dharahara Premises (Sundhara)</strong></td>
+                            <td>Rs. 10 / hour</td>
+                            <td>Rs. 20 / hour</td>
+                            <td>Managed by Dharahara management. Offers high capacity. Entry fee may apply for access to structures.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kathmandu Tower (Old Bus Park)</strong></td>
+                            <td><span style="color: var(--emerald-600); font-weight:700;">Free</span></td>
+                            <td><span style="color: var(--emerald-600); font-weight:700;">Free</span></td>
+                            <td>Official KMC designated free zone. Large facility holding 700 two-wheelers and 300 cars.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Zone 1 (Core City Areas)</strong></td>
+                            <td>Rs. 15 for 30 min, then Rs. 25/hr</td>
+                            <td>Rs. 50 for 30 min, then Rs. 80/hr</td>
+                            <td>Includes: New Road, Dharmapath, Kantipath, Durbar Marg, Tripureshwar, Ratnapark, Bhotahiti, Kesharmahal, Lainchaur.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Zone 2 (Outer City Areas)</strong></td>
+                            <td>Rs. 15 / hour</td>
+                            <td>Rs. 40 / hour</td>
+                            <td>Applies systematically to all geographic grid locations outside Zone 1.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Large Commercial Fleet (Zone 2)</strong></td>
+                            <td>—</td>
+                            <td>Rs. 100 / hour</td>
+                            <td>Applies to transport buses, delivery vans, and industrial pickups.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Commercial Buildings & Hospitals</strong></td>
+                            <td><span style="color: var(--emerald-600); font-weight:700;">Free</span></td>
+                            <td><span style="color: var(--emerald-600); font-weight:700;">Free</span></td>
+                            <td><strong>Legally Free</strong> if you utilize their services on-site. Establishments are barred from charging separate parking taxes.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Differently-Abled Individuals</strong></td>
+                            <td><span style="color: var(--emerald-600); font-weight:700;">Free</span></td>
+                            <td><span style="color: var(--emerald-600); font-weight:700;">Free</span></td>
+                            <td>KMC statutory exemption for vehicles specially configured for individuals with disabilities.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--crimson-600);"> Enforced No-Parking Zones & Penalties</h3>
+            <p style="font-size: 0.9rem; color: var(--slate-600);">Ignoring municipal signage can trigger immediate enforcement penalties. Ensure you look out for standard warnings:</p>
+            <ul class="instruction-steps-list" style="font-size: 0.9rem; color: var(--slate-700);">
+                <li><strong>Common Prohibited Sectors:</strong> Areas marked with yellow curbside lines, immediate intersections/turns, pedestrian footpaths/sidewalks, and near ambulance terminal entrance systems.</li>
+                <li><strong>Violation Penalties:</strong> Fines for parking violations range from <strong>Rs. 500 to Rs. 1,500</strong>. Vehicles blocking critical traffic lines are subject to immediate mechanical wheel clamping or flatbed towing by the municipal towing division.</li>
+                <li><strong>Document Compliance Audits:</strong> Traffic patrols actively verify registration validity during parking checks. Operating without a valid license or registration can result in immediate vehicle impoundment.</li>
+            </ul>
+
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--blue-600);"> Digital Fine Settlement</h3>
+            <p style="font-size: 0.9rem; color: var(--slate-600);">Long queues at police counters have been phased out. Follow these steps to resolve an issued digital citation via smartphone:</p>
+            <ol class="instruction-steps-list" style="font-size: 0.9rem; color: var(--slate-700);">
+                <li><strong>Citation Issuance:</strong> Officers register violations digitally against the QR-code index of your license (synchronized through the national <strong>Nagarik App</strong> platform).</li>
+                <li><strong>Review Details:</strong> Access the Nagarik App interface, enter the <em>Driving License</em> tab, and locate the pending record under the <em>Violation Records</em> registry to find your custom voucher code number.</li>
+                <li><strong>Digital Remittance:</strong> Launch an integrated digital mobile wallet such as <strong>eSewa</strong> or <strong>Khalti</strong>, input the specific voucher alphanumeric string, confirm the transaction, and store your payment confirmation receipt.</li>
+                <li><strong>Offline Resolution Alternative:</strong> Remittances remain payable at physical branch tellers of <strong>Rastriya Banijya Bank Ltd</strong>. Ensure you collect the stamped transaction voucher to verify compliance.</li>
+            </ol>
+        </article>
+
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <script src="../JS/parking.js">
+       
+    </script>
+</body>
+<footer>
+        <p>© 2026 Sustainable Cities And Communities</p>
+    </footer>
+</html>
