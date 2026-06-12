@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepal Municipal Eco-Travel Guide</title>
+    <link rel="stylesheet" href="../CSS/cities.css">
+</head>
+<body>
+
+    <header>
+        <nav class="light nav-animate-load" id="Nav">
+                <label class="logo">
+                    <a href="../HTML/aboutus.html">
+                        <img src="../data/logo.png">
+                    </a>
+                </label>
+                
+                <div class="center-buttons container-animate-load">
+                    <a href="../HTML/home.html"><button class="nav-btn" id="b0">Home</button></a>
+                    <button class="nav-btn" id="b1">Cities</button>
+                    <a href="../HTML/campaign.html"><button class="nav-btn" id="b2">Campaigns</button></a>
+                    <button class="nav-btn" id="b3">News</button>
+                    <button class="nav-btn" id="b4">Resources</button>
+                    <button class="nav-btn" id="b5">Inquiry</button>
+                    <button class="nav-btn" id="b6">Help</button>
+                </div>
+                
+                <div class="switch">
+                    <span class="flag">
+                        <img src="../data/flag.png" alt="flag">
+                    </span>
+                </div>
+        </nav>
+        </header>
+        <div class="header-container">
+            <div class="hud-panel">
+                <span class="search-icon"><img src="../data/search.png" class="hello" alt=""></span>
+                <input type="text" id="citySearchInput" class="search-input" placeholder="Search destinations..." oninput="filterCities()">
+            </div>
+        </div>
+
+
+    <main class="main-workspace">
+        <div class="section-intro">
+            <h2>Municipal Eco-Travel Guide</h2>
+            <p>Explore real-time urban ecosystems across Nepal. Type in the HUD bar above to search destinations, view 2026 air indices, and verify local ecological mandates.</p>
+        </div>
+
+        <section class="cities-grid-wrapper" id="rotatingCitiesGrid">
+            </section>
+    </main>
+
+    <div id="customMapModal" class="modal-overlay" onclick="closeMapModal()">
+        <div class="modal-container" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 id="modalMapTitle">📍 Live View</h3>
+                <button class="modal-close-btn" onclick="closeMapModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <iframe id="customMapIframe" src="" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="../JS/cities.js">
+         
+    </script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+let a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16 = 1;
+    a1=1
+
+const nepalCitiesMasterList = [
+    { name: "Kathmandu", type: "Heritage Hub", imgUrl: "https://www.nepaltraveladventure.com/blog/wp-content/uploads/2022/07/things-to-do-in-kathmandu-2022.jpg", aqi: a1, aqiClass: "aqi-good", aqiDesc: "Satisfactory clean baseline across valley lines.", places: [ {n: "Boudhanath Stupa", l: "https://maps.google.com/maps?q=Boudhanath+Stupa,Kathmandu&t=&z=13&ie=UTF8&iwloc=&output=embed"}, {n: "Durbar Square", l: "https://maps.google.com/maps?q=Kathmandu+Durbar+Square&t=&z=13&ie=UTF8&iwloc=&output=embed"} ], rules: ["Rs. 500 immediate fine for street littering.", "Total vehicle horn prohibition active."] },
+    { name: "Pokhara", type: "Lake Scenery", imgUrl: "https://cdn.kimkim.com/files/a/content_articles/featured_photos/0a99949f58bc92145369e8363c64c33bfd85f819/big-68acc559aad8def0f326f4d62e8faf78.jpg", aqi: a2, aqiClass: "aqi-moderate", aqiDesc: "Acceptable air; minor risk for sensitive groups.", places: [ {n: "Phewa Lakefront Walk", l: "https://maps.google.com/maps?q=Phewa+Lake,Pokhara&t=&z=13&ie=UTF8&iwloc=&output=embed"}, {n: "Sarangkot Viewpoint", l: "https://maps.google.com/maps?q=Sarangkot,Pokhara&t=&z=13&ie=UTF8&iwloc=&output=embed"} ], rules: ["Single-use plastic bags completely banned.", "Boats must possess waste collection packs."] },
+    { name: "Bharatpur", type: "Wildlife Gateway", imgUrl: "https://www.traveltalktours.com/wp-content/smush-webp/2021/12/vince-russell-FXVY6ZIOkhM-unsplash-1024x683.jpg.webp", aqi: a3, aqiClass: "aqi-moderate", aqiDesc: "Clean baseline optimal for river safaris.", places: [ {n: "Chitwan National Park Entrance", l: "https://maps.google.com/maps?q=Chitwan+National+Park&t=&z=13&ie=UTF8&iwloc=&output=embed"}, {n: "Rapti River Ghats", l: "https://maps.google.com/maps?q=Rapti+River&t=&z=13&ie=UTF8&iwloc=&output=embed"} ], rules: ["Zero-tolerance sound pollution rules near park.", "Flashlights prohibited on wild rhino corridors."] },
+    { name: "Lalitpur", type: "Crafts & Arts", imgUrl: "https://cdn.britannica.com/36/154236-050-8127D19C/Durbar-Square-Lalitpur-Nepal.jpg", aqi: a4, aqiClass: "aqi-good", aqiDesc: "Minimal particulate matter detected.", places: [ {n: "Patan Durbar Square", l: "https://maps.google.com/maps?q=Patan+Durbar+Square&t=&z=13&ie=UTF8&iwloc=&output=embed"}, {n: "Patan Museum Gallery", l: "https://maps.google.com/maps?q=Patan+Museum&t=&z=13&ie=UTF8&iwloc=&output=embed"} ], rules: ["E-rickshaws prioritized inside heritage alleys.", "Commercial plastic banners prohibited."] },
+    { name: "Bhaktapur", type: "Cultural Sanctuary", imgUrl: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/ef/5c/33/nyatapola-bhaktapur.jpg?w=1200&h=-1&s=1", aqi: a5, aqiClass: "aqi-good", aqiDesc: "Excellent air quality due to pedestrian focus.", places: [ {n: "Nyatapola Temple Complex", l: "https://maps.google.com/maps?q=Nyatapola,Bhaktapur&t=&z=13&ie=UTF8&iwloc=&output=embed"}, {n: "Pottery Square Yard", l: "https://maps.google.com/maps?q=Pottery+Square,Bhaktapur&t=&z=13&ie=UTF8&iwloc=&output=embed"} ], rules: ["Heavy cargo vehicles barred from core town.", "Restoration codes mandate brick-only facades."] },
+    { name: "Biratnagar", type: "Industrial Engine", imgUrl: "https://www.holidify.com/images/bgImages/BIRATNAGAR.jpg", aqi: a6, aqiClass: "aqi-moderate", aqiDesc: "Moderate industrial residue observed.", places: [ {n: "Koshi Tappu Wildlife Reserve", l: "https://maps.google.com/maps?q=Koshi+Tappu&t=&z=13&ie=UTF8&iwloc=&output=embed"}, {n: "Hatkhola Bazaar Axis", l: "https://maps.google.com/maps?q=Hatkhola,Biratnagar&t=&z=13&ie=UTF8&iwloc=&output=embed"} ], rules: ["Factories must utilize standard smokestack filter blocks.", "Strict illegal dumping fines along industrial lanes."] },
+    { name: "Birgunj", type: "Trade Hub Corridor", imgUrl: "https://upload.wikimedia.org/wikipedia/commons/3/37/Shankharacharya_Gate%2C_Birgunj.jpg?utm_source=en.wikivoyage.org&utm_campaign=index&utm_content=original", aqi: a7, aqiClass: "aqi-unhealthy", aqiDesc: "High transport density emissions active.", places: [ {n: "Ghariarwa Pokhari Precinct", l: "https://maps.google.com/maps?q=Ghariarwa+Pokhari&t=&z=13&ie=UTF8&iwloc=&output=embed"}, {n: "Parsa National Park Perimeter", l: "https://maps.google.com/maps?q=Parsa+National+Park&t=&z=13&ie=UTF8&iwloc=&output=embed"} ], rules: ["Freight vehicles must pass exhaust smoke checks.", "Wastewater disposal into public canals is banned."] },
+    { name: "Dharan", type: "Clean Green Town", imgUrl: "https://www.shutterstock.com/image-photo/dharan-nepal-june-3-2020-600nw-1748015117.jpg", aqi: a8, aqiClass: "aqi-good", aqiDesc: "Superb baseline due to community forest grids.", places: [ {n: "Budha Subba Temple Peak", l: "https://maps.google.com/maps?q=Budha+Subba,Dharan&t=&z=13&ie=UTF8&iwloc=&output=embed"}, {n: "Bhedetar Scenic Ridge", l: "https://maps.google.com/maps?q=Bhedetar&t=&z=13&ie=UTF8&iwloc=&output=embed"} ], rules: ["Weekly community sorting routines mandatory.", "Public plantation rules active for all sectors."] },
+    { name: "Butwal", type: "Economic Crossroad", imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Butwal.jpg/1280px-Butwal.jpg", aqi: a9, aqiClass: "aqi-moderate", aqiDesc: "Construction dust factors checked by tree buffers.", places: [ {n: "Manimukunda Sen Park Grounds", l: "https://maps.google.com/maps?q=Manimukunda+Sen+Park&t=&z=13&ie=UTF8&iwloc=&output=embed"}, {n: "Jitgadhi Killa Historic Fort", l: "https://maps.google.com/maps?q=Jitgadhi&t=&z=13&ie=UTF8&iwloc=&output=embed"} ], rules: ["Construction setups require dust-curtain nets.", "Highway green belt dumping is strictly audited."] },
+    { name: "Hetauda", type: "Green City Ideal", imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Hetauda_002.JPG/1280px-Hetauda_002.JPG", aqi: a10, aqiClass: "aqi-good", aqiDesc: "Highly preserved air environment.", places: [ {n: "Sahid Smarak Eco Park", l: "https://maps.google.com/maps?q=Sahid+Smarak,Hetauda&t=&z=13&ie=UTF8&iwloc=&output=embed"}, {n: "Gumba Danda Scenic Trails", l: "https://maps.google.com/maps?q=Gumba+Danda&t=&z=13&ie=UTF8&iwloc=&output=embed"} ], rules: ["Plastic container sales inside eco parks outlawed.", "Mandatory roof-garden systems on new facilities."] },
+    { name: "Janakpur", type: "Mithila Pilgrimage", imgUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Janki_Mandir.JPG", aqi: a11, aqiClass: "aqi-moderate", aqiDesc: "Tempered dry dust near temple squares.", places: [ {n: "Janaki Mandir Main Complex", l: "https://maps.google.com/maps?q=Janaki+Mandir&t=&z=13&ie=UTF8&iwloc=&output=embed"}, {n: "Ganga Sagar Holy Pond Walk", l: "https://maps.google.com/maps?q=Ganga+Sagar,Janakpur&t=&z=13&ie=UTF8&iwloc=&output=embed"} ], rules: ["Zero plastic items allowed near holy water ponds.", "Electric vehicles only in historical core plazas."] },
+    { name: "Dhangadhi", type: "Western Frontier", imgUrl: "https://republicaimg.nagariknewscdn.com/shared/web/uploads/media/Dhangadhi_20230514101806.jpg", aqi: a12, aqiClass: "aqi-moderate", aqiDesc: "Seasonal open dust components present.", places: [ {n: "Jokhar Lake Eco Reserve", l: "https://maps.google.com/maps?q=Jokhar+Lake&t=&z=13&ie=UTF8&iwloc=&output=embed"}, {n: "Aircraft Museum Grounds", l: "https://maps.google.com/maps?q=Aircraft+Museum,Dhangadhi&t=&z=13&ie=UTF8&iwloc=&output=embed"} ], rules: ["Agricultural waste burning is entirely prohibited.", "Wetlands must not face residential development."] },
+    { name: "Itahari", type: "Eastern Transit Node", imgUrl: "http://upload.wikimedia.org/wikipedia/commons/a/ad/Itahari..jpg", aqi: a13, aqiClass: "aqi-moderate", aqiDesc: "Highway traffic creates minor dust.", places: [ {n: "Ocean Park Leisure Arena", l: "https://maps.google.com/maps?q=Ocean+Park,Itahari&t=&z=13&ie=UTF8&iwloc=&output=embed"}, {n: "Taltalaiya Wetland Parks", l: "https://maps.google.com/maps?q=Taltalaiya&t=&z=13&ie=UTF8&iwloc=&output=embed"} ], rules: ["Littering from moving buses incurs heavy fines.", "Commercial signboards must respect green lines."] },
+    { name: "Nepalgunj", type: "Terai Gateway Axis", imgUrl: "https://nepaltraveller.com/laravel-filemanager/photos/28/Nepalgunj/800px-Bageshwori_Temple_Nepalgunj.jpg", aqi: a14, aqiClass: "aqi-unhealthy", aqiDesc: "High dry temperatures expand dust load metrics.", places: [ {n: "Bageshwori Temple Compound", l: "https://maps.google.com/maps?q=Bageshwori+Temple&t=&z=13&ie=UTF8&iwloc=&output=embed"}, {n: "Banke National Park Buffers", l: "https://maps.google.com/maps?q=Banke+National+Park&t=&z=13&ie=UTF8&iwloc=&output=embed"} ], rules: ["Water spray routines required on dusty projects.", "Public open incineration carries a high penalty."] },
+    { name: "Bhimdatta", type: "Far-West Outpost", imgUrl: "https://upload.wikimedia.org/wikipedia/commons/6/60/Dodhara_Chadani_Bridge%2C_Kanchanpur.jpg", aqi: a15, aqiClass: "aqi-good", aqiDesc: "Fresh mountain airflow tracks from standard ranges.", places: [ {n: "Shuklaphanta Grasslands", l: "https://maps.google.com/maps?q=Shuklaphanta&t=&z=13&ie=UTF8&iwloc=&output=embed"}, {n: "Mahakali Suspension Bridge", l: "https://maps.google.com/maps?q=Dodhara+Chadani+Bridge&t=&z=13&ie=UTF8&iwloc=&output=embed"} ], rules: ["Plastic items forbidden inside safari lines.", "River gravel mining is restricted to legal windows."] },
+    { name: "Siddharthanagar", type: "Lumbini Access Zone", imgUrl: "https://lumbinidevtrust.gov.np/upload_file/images/slider/1721894939_276597348_lumbini.jpg", aqi: a16, aqiClass: "aqi-moderate", aqiDesc: "Industrial mills create baseline particulates.", places: [ {n: "Lumbini Monastic Sacred Garden", l: "https://maps.google.com/maps?q=Lumbini+Sacred+Garden&t=&z=13&ie=UTF8&iwloc=&output=embed"}, {n: "Maya Devi Temple Grounds", l: "https://maps.google.com/maps?q=Maya+Devi+Temple&t=&z=13&ie=UTF8&iwloc=&output=embed"} ], rules: ["The Lumbini buffer loop is a zero-emission zone.", "No heavy factories permitted within city limits."] }
+];
+
+let defaultFeaturedCities = [];
+
+// Dynamic Map Engine targeting Modal Component window container directly
+function openMapModal(landmarkName, embedUrl) {
+    document.getElementById('modalMapTitle').textContent = `📍 Navigate: ${landmarkName}`;
+    document.getElementById('customMapIframe').src = embedUrl;
+    document.getElementById('customMapModal').style.display = 'flex';
+}
+
+function closeMapModal() {
+    document.getElementById('customMapModal').style.display = 'none';
+    document.getElementById('customMapIframe').src = ''; 
+}
+
+// Modified: Generate 6 random dashboard cities at once on initial layout entry
+function setupPageReloadRotation() {
+    const shuffled = [...nepalCitiesMasterList].sort(() => 0.5 - Math.random());
+    defaultFeaturedCities = shuffled.slice(0, 6); // Slices 6 items instead of 3
+    buildCityCardsHTML(defaultFeaturedCities);
+}
+
+function buildCityCardsHTML(targetDataSet) {
+    const gridContainer = document.getElementById('rotatingCitiesGrid');
+    gridContainer.innerHTML = ''; 
+
+    if(targetDataSet.length === 0) {
+        gridContainer.innerHTML = `<div class="no-results">No destinations match your criteria inside our current 2026 database.</div>`;
+        return;
+    }
+
+    targetDataSet.forEach((city, index) => {
+        const finalImg = city.imgUrl || `https://images.unsplash.com/featured/?nepal,${encodeURIComponent(city.name)}&sig=${index}`;
+        
+        const cardHtml = `
+            <div class="city-eco-card">
+                <div class="city-card-banner">
+                    <img src="${finalImg}" alt="${city.name}">
+                    <span class="city-experience-tag">${city.type}</span>
+                </div>
+                <div class="city-card-content">
+                    <h3 class="city-card-name">${city.name}</h3>
+                    
+                    <div class="aqi-meter-panel ${city.aqiClass}">
+                        <div class="aqi-score-badge">AQI ${city.aqi}</div>
+                        <div class="aqi-status-text">
+                            <strong>Status Matrix</strong>
+                            <p>${city.aqiDesc}</p>
+                        </div>
+                    </div>
+
+                    <div class="city-data-sub-section">
+                        <h4>🗺️ Places To Visit:</h4>
+                        <ul class="places-redirect-list">
+                            ${city.places.map(p => `
+                                <li>
+                                    <span>${p.n}</span>
+                                    <button onclick="openMapModal('${p.n.replace(/'/g, "\\'")}', '${p.l}')" class="map-link-btn">Navigate ➔</button>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="city-data-sub-section rules-box">
+                        <h4>📜 Local Eco-Laws:</h4>
+                        <ul class="municipal-rules-list">
+                            ${city.rules.map(r => `<li>${r}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        `;
+        gridContainer.innerHTML += cardHtml;
+    });
+}
+
+function filterCities() {
+    const queryText = document.getElementById('citySearchInput').value.toLowerCase().trim();
+    
+    if (queryText === "") {
+        buildCityCardsHTML(defaultFeaturedCities);
+    } else {
+        const filteredList = nepalCitiesMasterList.filter(city => 
+            city.name.toLowerCase().includes(queryText) || 
+            city.type.toLowerCase().includes(queryText) ||
+            city.aqiDesc.toLowerCase().includes(queryText)
+        );
+        buildCityCardsHTML(filteredList);
+    }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    setupPageReloadRotation();
+});
+
+//Hover button function,
+const buttons = document.querySelectorAll('.nav-btn');
+function Button_hover(){
+    buttons.forEach(button => {
+            button.style.background = 'linear-gradient(90deg, #ae0606, #ce1717, #9d00ff, #1093da)';
+            button.style.color = "#ffffff";
+            button.style.border = "2px solid #e1e1e1";
+            button.style.backgroundSize = '300% 100%';
+            button.style.backgroundPosition = '0% 0%';
+            button.style.transition = 'background-position 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease';
+    
+        button.onmouseenter = function() {
+            this.style.background = 'linear-gradient(90deg, #e40c0c, #e82214, #ff0000, #0015ff)';
+            this.style.backgroundPosition = '100% 0';
+            this.style.backgroundSize = '300% 100%';
+            this.style.transform = 'translateY(-3px)';
+            this.style.boxShadow =  '0 0 15px #9d00ff, 0 0 10px #5e2ce0';
+        };
+
+        button.onmouseleave = function() {
+            this.style.background = 'linear-gradient(90deg,#ae0606, #ce1717, #9d00ff, #1093da)';
+            this.style.backgroundPosition = '0% 0%';
+            this.style.backgroundSize = '300% 100%';
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+        };
+    });
+}
+Button_hover()
+
+//For Light on Screen:
+const nav = document.querySelector('.light');
+let fadeTimer; 
+let appearTime;
+let opav = 0
+function FadeOut(){
+    fadeTimer = setInterval(()=>{
+    opav -= 0.06 //Slowly decrease opacity.
+    if(opav <= 0){
+        nav.style.setProperty('--opacity', '0');
+        clearInterval(fadeTimer); //ends interval if opac is less or equal to 0.
+    }
+    else{
+        nav.style.setProperty('--opacity',opav) //The updated opacity.
+    }
+    },50);
+}
+nav.addEventListener('mousemove', (e) => {
+    //Clear the countdown timer if the mouse is still moving.
+    clearInterval(fadeTimer);
+    clearInterval(appearTime);
+
+    const rect = nav.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    //takes the pixel loaction of the pointer and converts it into white.
+    nav.style.setProperty('--x', `${x}px`);  
+    nav.style.setProperty('--y', `${y}px`);
+
+    appearTime = setInterval(()=>{ //Handles fade in
+        if (opav >= 0.8){
+            opav = 0.8
+            nav.style.setProperty('--opacity', opav);
+            clearInterval(appearTime);
+            FadeOut();//FadeOut is created a function so it affects the motion only if the intensity is max.
+
+        }
+        else if(opav < 0.8){
+            opav += 0.05
+            nav.style.setProperty('--opacity',opav);
+        }
+    },10);   
+    let oldx = x;
+});
