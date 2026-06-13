@@ -388,7 +388,7 @@
             <h2>Create Account</h2>
             <p class="subtitle">Register to unlock access to environmental dashboards and real-time utilities.</p>
 
-            <form id="ecoRegistrationForm" onsubmit="handleRegistrationSubmit(event)">
+            <form id="ecoRegistrationForm" onsubmit="input(event)">
                 
                 <div class="input-group">
                     <label for="userName">Full Name</label>
@@ -467,30 +467,6 @@
     </footer>
 
     <script>
-        function handleRegistrationSubmit(event) {
-            event.preventDefault();
-
-            // Read state of human verification checkbox element
-            const isHumanVerified = document.getElementById('captchaVerificationToken').checked;
-
-            // Security check validation constraint block execution
-            if (!isHumanVerified) {
-                alert("Security Verification Failed: Please check the 'I am not a robot' checkbox to confirm your identity.");
-                return;
-            }
-
-            // Extract values typed by the user once validation checks pass successfully
-            const registrationPayload = {
-                fullName: document.getElementById('userName').value,
-                emailAddress: document.getElementById('userEmail').value,
-                securityToken: document.getElementById('userPassword').value,
-                selectedSubTheme: document.getElementById('userThemePreference').value
-            };
-
-            console.log("Captcha Verification Success. Payload Object Data Generated:", registrationPayload);
-            
-            alert(`Authentication Verified, ${registrationPayload.fullName}! Your preference profile has been set to the ${registrationPayload.selectedSubTheme.toUpperCase()} dashboard matrix.`);
-        }
         async function input(event){
             event.preventDefault();
             const username = document.getElementById('userName').value;
