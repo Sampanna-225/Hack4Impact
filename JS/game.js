@@ -183,3 +183,54 @@ function Button_hover(){
     });
 }
 Button_hover()
+
+function initDropdownFreezeEngine() {
+    const dropdownWrapper = document.querySelector('.nav-item-dropdown');
+    const megaMenu = document.querySelector('.mega-menu');
+    const allNavButtons = document.querySelectorAll('.center-buttons .nav-btn');
+
+    if (!dropdownWrapper || !megaMenu) return;
+
+    // Freeze State Activation: When mouse enters the Services area
+    dropdownWrapper.addEventListener('mouseenter', () => {
+        dropdownWrapper.classList.add('frozen');
+    });
+
+    megaMenu.addEventListener('mouseenter', () => {
+        dropdownWrapper.classList.add('frozen');
+    });
+
+    // Unfreeze Trigger 1: If mouse moves over ANY OTHER navigation buttons
+    allNavButtons.forEach(button => {
+        if (button.id !== 'b4') {
+            button.addEventListener('mouseenter', () => {
+                dropdownWrapper.classList.remove('frozen');
+            });
+        }
+    });
+
+    // Unfreeze Trigger 2: Perimeter Tracking Map
+    // Tracks mouse movement globally to check if the user dropped below the menu box
+    document.addEventListener('mousemove', (e) => {
+        if (!dropdownWrapper.classList.contains('frozen')) return;
+
+        const menuRect = megaMenu.getBoundingClientRect();
+        
+        // If the menu is visible and the mouse cursor's Y-coordinate drops 
+        // more than 15px past the bottom of the mega-menu, close it instantly.
+        if (menuRect.height > 0 && e.clientY > (menuRect.bottom + 15)) {
+            dropdownWrapper.classList.remove('frozen');
+        }
+    });
+
+    // Backup safety escape catch-all: clear if clicking anywhere outside the navigation link block
+    document.addEventListener('click', (e) => {
+        if (!dropdownWrapper.contains(e.target)) {
+            dropdownWrapper.classList.remove('frozen');
+        }
+    });
+}
+
+// Fire up tracking on load execution
+document.addEventListener('DOMContentLoaded', initDropdownFreezeEngine);
+initDropdownFreezeEngine();
