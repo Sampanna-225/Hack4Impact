@@ -1,15 +1,18 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nepal Municipal Eco-Travel Guide</title>
-    <link rel="stylesheet" href="../CSS/cities.css">
+    <title>Nepal Ultimate Heritage Explorer & Live GIS Server Map</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="../CSS/heritages.css">
+    <style>
+       
+    </style>
 </head>
 <body>
-
-    <header id="navi">
+      <header id="navi">
         <nav class="light nav-animate-load" id="Nav">
                 <label class="logo">
                     <a href="../HTML/aboutus.html">
@@ -91,43 +94,36 @@
             </nav>
   </header>
   <br>
-    <div class="main-workspace">
-        <div class="header-container">
-            <div class="hud-panel">
-                <span class="search-icon"><img src="../data/search.png" class="hello" alt=""></span>
-                <input type="text" id="citySearchInput" class="search-input" placeholder="Search destinations..." oninput="filterCities()">
-            </div>
-        </div>
+  <div class="main-workspace">
+        <div class="heritage-wrapper">
+            
+            <header class="platform-header">
+                <h1> Nepal Master Heritage Explorer System</h1>
+                <p>Comprehensive GIS Database mapping 38 ancient monuments, cultural marvels, and pristine reserves across Nepal.</p>
+            </header>
 
-
-    <main class="main-workspace">
-        <div class="section-intro">
-            <h2>Municipal Eco-Travel Guide</h2>
-            <p>Explore real-time urban ecosystems across Nepal. Type in the HUD bar above to search destinations, view 2026 air indices, and verify local ecological mandates.</p>
-        </div>
-
-        <section class="cities-grid-wrapper" id="rotatingCitiesGrid">
+            <section class="map-section-frame">
+                <div class="map-control-bar"> Live Heritage Server Map Terminal</div>
+                <div id="heritageServerMap"></div>
             </section>
-    </main>
 
-    <div id="customMapModal" class="modal-overlay" onclick="closeMapModal()">
-        <div class="modal-container" onclick="event.stopPropagation()">
-            <div class="modal-header">
-                <h3 id="modalMapTitle">📍 Live View</h3>
-                <button class="modal-close-btn" onclick="closeMapModal()">×</button>
+            <div class="search-control-wrapper">
+                <span class="search-icon"><img src="C:\Users\saura\Downloads\erasebg-transformed (2).png" class="hello" alt=""></span>
+                <input type="text" id="heritageSearchBox" class="search-input-field" placeholder="  Search...." oninput="executeLiveSearchFilter()">
+                <button class="action-control-btn" onclick="rotateRandomUpfrontHeritage()"> Refresh</button>
             </div>
-            <div class="modal-body">
-                <iframe id="customMapIframe" src="" allowfullscreen="" loading="lazy"></iframe>
-            </div>
+
+            <main class="showcase-grid-canvas" id="heritageDisplayGrid"></main>
+
         </div>
-    </div>
     </div>
     <footer>
         <p>© 2026 Sustainable Cities And Communities </p>
     </footer>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-    <script src="../JS/cities.js">
-         
+    <script src="../JS/heritages.js">
+        
     </script>
 </body>
 </html>

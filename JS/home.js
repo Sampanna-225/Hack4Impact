@@ -8,55 +8,65 @@
   
 //Dropdown 
 function initDropdownFreezeEngine() {
-const dropdownWrapper = document.querySelector('.nav-item-dropdown');
-const megaMenu = document.querySelector('.mega-menu');
-const allNavButtons = document.querySelectorAll('.center-buttons .nav-btn');
+    // 1. Grab ALL dropdown containers on the page
+    const allDropdowns = document.querySelectorAll('.nav-item-dropdown');
+    const allNavButtons = document.querySelectorAll('.center-buttons .nav-btn');
 
-if (!dropdownWrapper || !megaMenu) return;
+    if (allDropdowns.length === 0) return;
 
-// Freeze State Activation: When mouse enters the Services area
-dropdownWrapper.addEventListener('mouseenter', () => {
-    dropdownWrapper.classList.add('frozen');
-});
+    allDropdowns.forEach(dropdownWrapper => {
+        const megaMenu = dropdownWrapper.querySelector('.mega-menu');
+        if (!megaMenu) return;
 
-megaMenu.addEventListener('mouseenter', () => {
-    dropdownWrapper.classList.add('frozen');
-});
-
-// Unfreeze Trigger 1: If mouse moves over ANY OTHER navigation buttons
-allNavButtons.forEach(button => {
-    if (button.id !== 'b4') {
-        button.addEventListener('mouseenter', () => {
-            dropdownWrapper.classList.remove('frozen');
+        // Freeze State Activation: When mouse enters a specific dropdown wrapper area
+        dropdownWrapper.addEventListener('mouseenter', () => {
+            // First clear out any other open dropdowns to avoid overlap
+            allDropdowns.forEach(d => d.classList.remove('frozen'));
+            dropdownWrapper.classList.add('frozen');
         });
-    }
-});
 
-// Unfreeze Trigger 2: Perimeter Tracking Map
-// Tracks mouse movement globally to check if the user dropped below the menu box
-document.addEventListener('mousemove', (e) => {
-    if (!dropdownWrapper.classList.contains('frozen')) return;
+        megaMenu.addEventListener('mouseenter', () => {
+            dropdownWrapper.classList.add('frozen');
+        });
 
-    const menuRect = megaMenu.getBoundingClientRect();
-    
-    // If the menu is visible and the mouse cursor's Y-coordinate drops 
-    // more than 15px past the bottom of the mega-menu, close it instantly.
-    if (menuRect.height > 0 && e.clientY > (menuRect.bottom + 15)) {
-        dropdownWrapper.classList.remove('frozen');
-    }
-});
+        // Unfreeze Trigger 1: If mouse moves over standard navigation buttons that AREN'T inside a dropdown container
+        allNavButtons.forEach(button => {
+            // Check if this button is nested inside a dropdown element
+            const parentDropdown = button.closest('.nav-item-dropdown');
+            
+            // If it's a completely standalone button (like Home, Cities, Campaigns, News)
+            if (!parentDropdown) {
+                button.addEventListener('mouseenter', () => {
+                    dropdownWrapper.classList.remove('frozen');
+                });
+            }
+        });
 
-// Backup safety escape catch-all: clear if clicking anywhere outside the navigation link block
-document.addEventListener('click', (e) => {
-    if (!dropdownWrapper.contains(e.target)) {
-        dropdownWrapper.classList.remove('frozen');
-    }
-});
+        // Unfreeze Trigger 2: Perimeter Boundary Tracking Map
+        document.addEventListener('mousemove', (e) => {
+            if (!dropdownWrapper.classList.contains('frozen')) return;
+
+            const menuRect = megaMenu.getBoundingClientRect();
+            
+            // If the menu is visible and the cursor's Y-coordinate drops 15px past the bottom boundary lines
+            if (menuRect.height > 0 && e.clientY > (menuRect.bottom + 15)) {
+                dropdownWrapper.classList.remove('frozen');
+            }
+        });
+    });
+
+    // Backup safety escape catch-all: clear everything if clicking anywhere completely outside the navigation links
+    document.addEventListener('click', (e) => {
+        allDropdowns.forEach(dropdownWrapper => {
+            if (!dropdownWrapper.contains(e.target)) {
+                dropdownWrapper.classList.remove('frozen');
+            }
+        });
+    });
 }
 
 // Fire up tracking on load execution
 document.addEventListener('DOMContentLoaded', initDropdownFreezeEngine);
-initDropdownFreezeEngine();
 
 const buttons = document.querySelectorAll('.nav-btn');
 function Button_hover(){

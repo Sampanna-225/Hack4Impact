@@ -13,8 +13,8 @@
     </style>
 </head>
 <body>
-    <header id="navi">
-            <nav class="light nav-animate-load" id="Nav">
+<header id="navi">
+        <nav class="light nav-animate-load" id="Nav">
                 <label class="logo">
                     <a href="../HTML/aboutus.html">
                         <img src="../data/logo.png">
@@ -38,9 +38,53 @@
                     <button class="nav-btn" id="b3">News</button>
                     </a>
 
-                    <button class="nav-btn" id="b4">Services</button>
+                    <div class="nav-item-dropdown">
+                        <button class="nav-btn" id="b4">Services</button>
+                        
+                        <div class="mega-menu">
+                            <div class="mega-menu-content">
+                                <div class="mega-menu-column">
+                                    <h3>Explore Services</h3>
+                                    <a href="../HTML/game.html">Waste Bounty</a>
+                                    <a href="../HTML/parking.html">Parking Areas and Info</a>
+                                    <a href="../HTML/heritages.html">Heritage Locator</a>
+                                    <a href="../HTML/AQI.html">Air Quality Index (AQI)</a>
+                                    <a href="../HTML/mapping.html">Mapping and Location</a>
+                                    <a href="../HTML/SDG.html">SDG goals</a>
+                                </div>
+                                
+                                <div class="mega-menu-column">
+                                   <h3>Support</h3>
+                                    <a href="../HTML/aboutus.html">Creator's Detail</a>
+                                    <a href="https://www.instagram.com/og_denkg">Report an Issue</a>
+                                    <a href="https://patancollege.edu.np">Community page</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <button class="nav-btn" id="b6">User</button>
+                    <div class="nav-item-dropdown">
+                        <button class="nav-btn" id="b6">User</button>
+                        
+                        <div class="mega-menu">
+                            <div class="mega-menu-content">
+                                <div class="mega-menu-column">
+                                    <h3>Explore Services</h3>
+                                    <a href="../HTML/User.html">User Login</a>
+                                    <a href="../HTML/campaign_admin.html">User Admin Mode</a>
+                                    <a href="../HTML/heritages.html">Sign Out</a>
+                                </div>
+                                
+                                <div class="mega-menu-column">
+                                    <h3>Support</h3>
+                                    <a href="../HTML/aboutus.html">Creator's Detail</a>
+                                    <a href="https://www.instagram.com/og_denkg">Report an Issue</a>
+                                    <a href="https://patancollege.edu.np">Community page</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 
                 <div class="switch">
@@ -49,7 +93,10 @@
                     </span>
                 </div>
             </nav>
-        </header>
+  </header>
+  <br>
+  <br>
+   <div class="main-workspace">
     <div class="dashboard-container">
         
         <header class="aqi-header">
@@ -198,8 +245,12 @@
                     <tr style="background-color: #fffbeb; border: 2px solid var(--iqair-orange);"><td class="rank-number">12</td><td><strong>Nepal</strong></td><td><strong>30,034,989</strong></td><td class="aqi-score-col"><span class="aqi-inline-box color-unhealthy-sensitive">106</span></td></tr>
                 </tbody>
             </table>
-        </div>
+         </div>
 
+        </div>
+        <footer>
+        <p>© 2026 Sustainable Cities And Communities </p>
+        </footer>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
