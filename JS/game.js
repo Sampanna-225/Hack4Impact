@@ -273,3 +273,23 @@ async function receiving_packets() {
     }
 }
 
+function listen_for_refresh() {
+    try {
+        // FIXED: Changed 'campaign-update' to 'info-update' to align with User.html
+        const channel = new BroadcastChannel('info-update');
+        channel.onmessage = (event) => {
+            if (event.data.action === 'refresh') {
+                console.log('User wallet update detected, updating HUD...');
+                receiving_packets(); // FIXED: corrected spelling
+            }
+        };
+    } catch (error) {
+        console.warn('BroadcastChannel not supported:', error);
+        // Fallback: refresh every 10 seconds if BroadcastChannel is blocked
+        setInterval(receiving_packets, 10000); // FIXED: corrected spelling from 'reseiving' to 'receiving'
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    receiving_packets();
+});

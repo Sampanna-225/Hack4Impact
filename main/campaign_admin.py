@@ -5,7 +5,7 @@ from pydantic import BaseModel
 import pymongo
 
 
-MONGO_DETAILS ="mongodb://localhost:27017/"
+MONGO_DETAILS = "mongodb://localhost:27017/"
 client = AsyncIOMotorClient(MONGO_DETAILS)
 db = client["hack4impact"]
 campaigns = db["campaigns"]
@@ -21,6 +21,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 class payload(BaseModel):
     t: str
     l: str
@@ -69,14 +70,18 @@ async def get_campaign():
 async def add_credit(cred: CreditSchema):
     money = cred.model_dump()
     
-    result = await user_money.insert_one(money)
+    result = await user_money.update_one(
+        {"cid": money["cid"]},
+        {"$set": money},
+        upsert=True
+    )
 
     existing_dbs = await client.list_database_names()
     print("REAL-TIME DATABASES IN MONGODB:", existing_dbs)
 
     return {
         "status": "success", 
-        "inserted_id": str(result.inserted_id)
+        "message": f"Credits updated successfully for cid {money['cid']}"
     }
 
 @app.get('/api/credits')
@@ -93,14 +98,18 @@ async def fetch_all_credits():
 async def add_detail(data: User):
     detail = data.model_dump()
 
-    result = await user.insert_one(detail)
+    result = await user.update_one(
+        {"cid": detail["cid"]},
+        {"$set": detail},
+        upsert=True
+    )
 
     existing_dbs = await client.list_database_names()
     print("REAL-TIME DATABASES IN MONGODB:", existing_dbs)
 
     return {
         "status": "success", 
-        "inserted_id": str(result.inserted_id)
+        "message": f"User profile records updated successfully for cid {detail['cid']}"
     }
 
 @app.get('/api/user')

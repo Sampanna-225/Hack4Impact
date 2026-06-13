@@ -366,18 +366,116 @@
     </footer>
 
     <script>
-        let currentWalletCoins = 1250;
+let currentWalletCoins = 0;
 
-        function processRedemption(itemCost, itemName) {
-            if (currentWalletCoins >= itemCost) {
-                currentWalletCoins -= itemCost;
-                document.getElementById('userCoinBalanceDisplay').textContent = currentWalletCoins.toLocaleString();
-                alert(`Success! You have redeemed: ${itemName}.\nYour remaining balance is now ${currentWalletCoins} EcoCoins.`);
-            } else {
-                alert(`Insufficient Balance: You do not have enough EcoCoins to redeem ${itemName}. Please perform more waste management tasks to earn coins!`);
+    // Run upfront synchronization as soon as the DOM tree loads
+    document.addEventListener('DOMContentLoaded', () => {
+        receiving_packets();
+        listen_for_refresh();
+    });
+
+    // 1. RENDER HUD ENGINE: Maps API collection results to your UI layout
+    function display(c) {
+        const userWallet = c.find(item => item.cid === '1');
+
+        if (userWallet) {
+            currentWalletCoins = userWallet.credit;
+        } else {
+            currentWalletCoins = 0;
+        }
+        
+        // Target and update the display balance card
+        const balanceDisplay = document.getElementById('userCoinBalanceDisplay');
+        if (balanceDisplay) {
+            balanceDisplay.textContent = currentWalletCoins.toLocaleString();
+        }
+    }
+
+    // 2. FETCH PIPELINE: Pull down real-time wallet records from MongoDB
+    async function receiving_packets() {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/credits');
+
+            if (!response.ok) {
+                throw new Error(`HTTPS error! Status: ${response.status}`);
             }
+            const credit = await response.json();
+            display(credit);
+        }
+        catch(error) {
+            console.error("Failed to receive payload: ", error);
+        }
+    }
+
+    // 3. TRANSACTION PIPELINE: Deduct coins locally AND persist the change to the API
+    async function processRedemption(itemCost, itemName) {
+        if (currentWalletCoins < itemCost) {
+            alert(`Insufficient Balance: You do not have enough EcoCoins to redeem ${itemName}. Please perform more waste management tasks to earn coins!`);
+            return;
         }
 
+        const updatedBalance = currentWalletCoins - itemCost;
+
+        // Construct the expected payload structured for your CreditSchema
+        const user_credit = {
+            cid: '1',
+            credit: updatedBalance
+        };
+
+        try {
+            // Send the updated wallet balance back to your FastAPI backend
+            const response2 = await fetch('http://127.0.0.1:8000/api/credits', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(user_credit)
+            });
+            
+            if (!response2.ok) {
+                throw new Error(`HTTP Error Status: ${response2.status}`);
+            }    
+            
+            // If the database write succeeds, update the local UI variable
+            currentWalletCoins = updatedBalance;
+            document.getElementById('userCoinBalanceDisplay').textContent = currentWalletCoins.toLocaleString();
+
+            alert(`Success! You have redeemed: ${itemName}.\nYour remaining balance is now ${currentWalletCoins} EcoCoins.`);
+            
+            // Broadcast the change to keep other tabs (like your map dashboard) completely synced
+            broadcast_refresh();
+        }
+        catch (error) {
+            console.error("Transmission Failure:", error);
+            alert('Failed to process redemption. Your server connection was lost.');
+        }
+    }
+
+    // 4. BROADCAST ENGINE: Notifies other browser frames of local wallet updates
+    function broadcast_refresh() {
+        try {
+            const channel = new BroadcastChannel('info-update');
+            channel.postMessage({ action: 'refresh' });
+            channel.close();
+        } catch (error) {
+            console.warn('BroadcastChannel not supported:', error);
+        }
+    }
+
+    // 5. REFRESH LISTENER: Updates this page instantly if operations happen elsewhere
+    function listen_for_refresh() {
+        try {
+            const channel = new BroadcastChannel('info-update');
+            channel.onmessage = (event) => {
+                if (event.data.action === 'refresh') {
+                    console.log('User wallet update detected, updating HUD...');
+                    receiving_packets();
+                }
+            };
+        } catch (error) {
+            console.warn('BroadcastChannel not supported:', error);
+            // Backup polling mechanism if channels are disabled
+            setInterval(receiving_packets, 10000);
+        }
+    }
         
     </script>
 </body>
