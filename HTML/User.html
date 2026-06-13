@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Movement | EcoAction Portal Registration</title>
+    <style>
+        /* --- Core Color Variables (From Your Theme) --- */
+        :root {
+            --primary: rgba(196, 17, 17, 0.85);
+            --primary-light: #e8f5e9;
+            --secondary: #1565c0;
+            --accent: #e65100;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --muted: #64748b;
+            --shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+            --transition: all 0.3s ease;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Navigation / Header Bar --- */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sdg-badge {
+            background: #c5192d; /* Nepal Crimson style badge retained for identity */
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 900;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        /* --- Section Hero Banner --- */
+        .news-hero {
+            background: linear-gradient(rgba(196, 17, 17, 0.85), rgb(2, 11, 81)),
+                        url('https://images.unsplash.com/photo-1482053450283-3e0b78b09a70?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover;
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .news-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-hero p {
+            color: #cbd5e1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- Main Two-Column Layout --- */
+        .portal-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+            flex-grow: 1;
+        }
+
+        /* ==========================================================================
+           LEFT SIDE: REGISTRATION FORM
+           ========================================================================== */
+        .form-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .form-card h2 {
+            font-size: 1.75rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .form-card .subtitle {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 0.85rem 1rem;
+            color: var(--dark);
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+        }
+
+        /* --- Refactored Custom Captcha --- */
+        .captcha-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f1f5f9;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.85rem 1rem;
+            margin-bottom: 1.5rem;
+            user-select: none;
+        }
+
+        .captcha-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .captcha-checkbox-wrapper {
+            position: relative;
+            width: 24px;
+            height: 24px;
+        }
+
+        .captcha-checkbox-wrapper input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark-box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 24px;
+            width: 24px;
+            background: #fff;
+            border: 2px solid #94a3b8;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .captcha-checkbox-wrapper:hover input ~ .checkmark-box {
+            border-color: #64748b;
+        }
+
+        .captcha-checkbox-wrapper input:checked ~ .checkmark-box {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .checkmark-box::after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 7px;
+            top: 3px;
+            width: 5px;
+            height: 10px;
+            border: solid #fff;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+
+        .captcha-checkbox-wrapper input:checked ~ .checkmark-box::after {
+            display: block;
+        }
+
+        .captcha-label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #334155;
+            cursor: pointer;
+        }
+
+        .captcha-right-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0.7;
+        }
+
+        .captcha-icon-svg {
+            width: 26px;
+            height: 26px;
+            fill: var(--muted);
+        }
+
+        .captcha-right-brand span {
+            font-size: 0.6rem;
+            color: var(--muted);
+            font-weight: 700;
+            margin-top: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Standardized Action Button --- */
+        .submit-action-btn {
+            width: 100%;
+            background: rgba(196, 17, 17, 0.85);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(46, 125, 50, 0.15);
+        }
+
+        .submit-action-btn:hover {
+            background: rgba(148, 9, 9, 0.85);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px  rgba(165, 17, 17, 0.273);
+        }
+
+        /* ==========================================================================
+           RIGHT SIDE: BRAND MISSION DECK (NEWS CARD STYLING)
+           ========================================================================== */
+        .info-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .vision-statement h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .vision-statement p {
+            color: #475569;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .impact-highlights-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+
+        /* Rendered directly to mimic the News Card Deck aesthetics */
+        .highlight-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(15, 23, 42, 0.12);
+        }
+
+        .highlight-card label {
+            display: inline-block;
+            color: white;
+            background: var(--accent);
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .highlight-card h4 {
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .highlight-card span {
+            color: #475569;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            display: block;
+        }
+
+        .footer-compliance-text {
+            font-size: 0.85rem;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+        }
+
+        /* --- Footer Structural Block --- */
+        footer {
+            background-color: var(--dark);
+            color: #94a3b8;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Breakpoint Adjustment */
+        @media (max-width: 900px) {
+            .portal-container { grid-template-columns: 1fr; gap: 2.5rem; margin: 2rem auto; }
+            .news-hero h1 { font-size: 2rem; }
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="news-hero">
+        <h1>Join Our Devlopment Plan</h1>
+        <p>Clean.Earn.Devlop</p>
+    </section>
+
+    <main class="portal-container">
+        
+        <!-- Registration Core Form Container -->
+        <article class="form-card">
+            <h2>Create Account</h2>
+            <p class="subtitle">Register to unlock access to environmental dashboards and real-time utilities.</p>
+
+            <form id="ecoRegistrationForm" onsubmit="handleRegistrationSubmit(event)">
+                
+                <div class="input-group">
+                    <label for="userName">Full Name</label>
+                    <input type="text" id="userName" placeholder="Enter your full name" required autocomplete="name">
+                </div>
+
+                <div class="input-group">
+                    <label for="userEmail">Email Address</label>
+                    <input type="email" id="userEmail" placeholder="yourname@domain.com" required autocomplete="email">
+                </div>
+
+                <div class="input-group">
+                    <label for="userPassword">Security Password</label>
+                    <input type="password" id="userPassword" placeholder="••••••••••••" required autocomplete="new-password">
+                </div>
+
+                
+
+                <div class="captcha-container">
+                    <div class="captcha-left">
+                        <div class="captcha-checkbox-wrapper">
+                            <input type="checkbox" id="captchaVerificationToken">
+                            <label class="checkmark-box" for="captchaVerificationToken"></label>
+                        </div>
+                        <label class="captcha-label" for="captchaVerificationToken">I am not a robot</label>
+                    </div>
+                    <div class="captcha-right-brand">
+                        <svg class="captcha-icon-svg" viewBox="0 0 24 24">
+                            <path d="M12,6V9L16,5L12,1V4A8,8 0 0,0 4,12C4,13.42 4.37,14.75 5,15.9L6.47,14.43C6.17,13.68 6,12.87 6,12A6,6 0 0,1 12,6M18,8.1L16.53,9.57C16.83,10.32 17,11.13 17,12A6,6 0 0,1 11,18V15L7,19L11,23V20A8,8 0 0,0 19,12C19,10.58 18.63,9.25 18,8.1Z"/>
+                        </svg>
+                        <span>Security</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-action-btn">Initialize Civic Profile</button>
+            </form>
+        </article>
+
+        <!-- Right Side Panel structured matching your Information Deck Card architecture -->
+        <section class="info-side">
+            <div class="vision-statement">
+                <h3>Sustainable Cities & Communities</h3>
+                <p>Our platform transforms residents into active stakeholders. By syncing smart telemetry and processing crowd networks, we help decrease gridlocks, capture air trends, and streamline resource pathways across valley zones.</p>
+            </div>
+
+            <div class="impact-highlights-grid">
+                <a href="../HTML/game.html"><div class="highlight-card">
+                    <label>Earning Matrix</label>
+                    <h4>Clean & Earn</h4>
+                    <span>Upload verified processing milestones to earn digital environment nodes.</span>
+                </div></a>
+               <a href="../HTML/parking.html"><div class="highlight-card">
+                    <label>Grid Ops</label>
+                    <h4>Transit Optimization</h4>
+                    <span>Instant deployment maps tracking parking layouts to remove choke nodes.</span>
+                </div></a>
+                <a href="../HTML/AQI.html"><div class="highlight-card">
+                    <label>Telemetry</label>
+                    <h4>Micro-Climate Index</h4>
+                    <span>Real-time stream monitoring across localized geographic valley networks.</span>
+                </div></a>
+                <a href="../HTML/heritages.html"><div class="highlight-card">
+                    <label>Preservation</label>
+                    <h4>Heritage Registry</h4>
+                    <span>Interactive geospatial routes cataloging historical landmarks.</span>
+                </div></a>
+            </div>
+
+        
+        </section>
+
+    </main>
+
+    <footer>
+        &copy; 2026 Sustainable Cities and Communities
+    </footer>
+
+    <script>
+        function handleRegistrationSubmit(event) {
+            event.preventDefault();
+
+            // Read state of human verification checkbox element
+            const isHumanVerified = document.getElementById('captchaVerificationToken').checked;
+
+            // Security check validation constraint block execution
+            if (!isHumanVerified) {
+                alert("Security Verification Failed: Please check the 'I am not a robot' checkbox to confirm your identity.");
+                return;
+            }
+
+            // Extract values typed by the user once validation checks pass successfully
+            const registrationPayload = {
+                fullName: document.getElementById('userName').value,
+                emailAddress: document.getElementById('userEmail').value,
+                securityToken: document.getElementById('userPassword').value,
+                selectedSubTheme: document.getElementById('userThemePreference').value
+            };
+
+            console.log("Captcha Verification Success. Payload Object Data Generated:", registrationPayload);
+            
+            alert(`Authentication Verified, ${registrationPayload.fullName}! Your preference profile has been set to the ${registrationPayload.selectedSubTheme.toUpperCase()} dashboard matrix.`);
+        }
+        async function input(event){
+            event.preventDefault();
+            const username = document.getElementById('userName').value;
+            const email = document.getElementById('userEmail').value;
+            const pass = document.getElementById('userPassword').value;
+            if(!username || !email || !pass ){
+                alert('Please fill in all fields');
+                return;
+            }
+
+            const user_payload={
+                cid : '1',
+                user : username,
+                em : email,
+                ps : pass
+            };
+            const user_credit={
+                cid: '1',
+                credit: 10000
+            }
+
+        try{
+            const response = await fetch('http://127.0.0.1:8000/api/user',{
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(user_payload)
+            });
+
+            const response2 = await fetch('http://127.0.0.1:8000/api/credits',{
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(user_credit)
+            });
+            
+            if(!response.ok || !response2.ok){
+                throw new Error(`HTTP Error Status: ${response.status}`);
+            }    
+            alert(' Submitted successfully!');
+            broadcast_refresh();
+        }
+        catch (error){
+            console.error("Transmission Failure:", error);
+            alert('Failed to submit . Please try again.');
+        }
+        };
+
+
+
+        function broadcast_refresh(){
+            try {
+                const channel = new BroadcastChannel('info-update');
+                channel.postMessage({ action: 'refresh' });
+                channel.close();
+            } catch (error) {
+                console.warn('BroadcastChannel not supported:', error);
+            }
+        };
+    </script>
+</body>
+</html>

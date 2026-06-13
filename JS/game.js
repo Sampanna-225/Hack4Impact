@@ -244,3 +244,32 @@ function initDropdownFreezeEngine() {
 
 // Fire up tracking on load execution
 document.addEventListener('DOMContentLoaded', initDropdownFreezeEngine);
+
+
+
+function display(c) {
+    const userWallet = c.find(item => item.cid === '1');
+
+    if (userWallet) {
+        document.getElementById('walletValue').innerHTML = `Rs ${userWallet.credit}`;
+    } else {
+        document.getElementById('walletValue').innerHTML = `Rs 0`;
+    }
+}
+
+
+async function receiving_packets() {
+    try {
+        const response = await fetch('http://127.0.0.1:8000/api/credits');
+
+        if (!response.ok) {
+            throw new Error(`HTTPS error! Status: ${response.status}`);
+        }
+        const credit = await response.json();
+        display(credit);
+    }
+    catch(error) {
+        console.error("Failed to receive payload: ", error);
+    }
+}
+
