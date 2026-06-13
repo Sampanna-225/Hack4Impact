@@ -1,5 +1,5 @@
-let a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16 = 1;
-    a1=1
+let a1 = 82;
+let a2 =18,a3=45,a4=79,a5=35,a6=45,a7=138,a8=109,a9=136,a10=38,a11=151,a12=112,a13=123,a14=152,a15=90,a16 = 55;
 
 const nepalCitiesMasterList = [
     { name: "Kathmandu", type: "Heritage Hub", imgUrl: "https://www.nepaltraveladventure.com/blog/wp-content/uploads/2022/07/things-to-do-in-kathmandu-2022.jpg", aqi: a1, aqiClass: "aqi-good", aqiDesc: "Satisfactory clean baseline across valley lines.", places: [ {n: "Boudhanath Stupa", l: "https://maps.google.com/maps?q=Boudhanath+Stupa,Kathmandu&t=&z=13&ie=UTF8&iwloc=&output=embed"}, {n: "Durbar Square", l: "https://maps.google.com/maps?q=Kathmandu+Durbar+Square&t=&z=13&ie=UTF8&iwloc=&output=embed"} ], rules: ["Rs. 500 immediate fine for street littering.", "Total vehicle horn prohibition active."] },
@@ -228,7 +228,6 @@ function initDropdownFreezeEngine() {
         // Unfreeze Trigger 2: Perimeter Boundary Tracking Map
         document.addEventListener('mousemove', (e) => {
             if (!dropdownWrapper.classList.contains('frozen')) return;
-
             const menuRect = megaMenu.getBoundingClientRect();
             
             // If the menu is visible and the cursor's Y-coordinate drops 15px past the bottom boundary lines

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepal Interactive Explorer & Destination Guide</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="../CSS/mapping.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <header id="navi">
+        <nav class="light nav-animate-load" id="Nav">
+                <label class="logo">
+                    <a href="../HTML/aboutus.html">
+                        <img src="../data/logo.png">
+                    </a>
+                </label>
+                
+                <div class="center-buttons container-animate-load">
+                    <a href="../HTML/home.html">
+                        <button class="nav-btn" id="b0">Home</button>
+                    </a>
+
+                    <a href="../HTML/cities.html">
+                        <button class="nav-btn" id="b1">Cities</button>
+                    </a>
+
+                    <a href="../HTML/campaign.html">
+                        <button class="nav-btn" id="b2">Campaigns</button>
+                    </a>
+
+                    <a href="../HTML/news.html">
+                    <button class="nav-btn" id="b3">News</button>
+                    </a>
+
+                    <div class="nav-item-dropdown">
+                        <button class="nav-btn" id="b4">Services</button>
+                        
+                        <div class="mega-menu">
+                            <div class="mega-menu-content">
+                                <div class="mega-menu-column">
+                                    <h3>Explore Services</h3>
+                                    <a href="../HTML/game.html">Waste Bounty</a>
+                                    <a href="../HTML/parking.html">Parking Areas and Info</a>
+                                    <a href="../HTML/heritages.html">Heritage Locator</a>
+                                    <a href="../HTML/AQI.html">Air Quality Index (AQI)</a>
+                                    <a href="../HTML/mapping.html">Mapping and Location</a>
+                                    <a href="../HTML/SDG.html">SDG goals</a>
+                                </div>
+                                
+                                <div class="mega-menu-column">
+                                   <h3>Support</h3>
+                                    <a href="../HTML/aboutus.html">Creator's Detail</a>
+                                    <a href="https://www.instagram.com/og_denkg">Report an Issue</a>
+                                    <a href="https://patancollege.edu.np">Community page</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-item-dropdown">
+                        <button class="nav-btn" id="b6">User</button>
+                        
+                        <div class="mega-menu">
+                            <div class="mega-menu-content">
+                                <div class="mega-menu-column">
+                                    <h3>Explore Services</h3>
+                                    <a href="../HTML/User.html">User Login</a>
+                                    <a href="../HTML/campaign_admin.html">User Admin Mode</a>
+                                    <a href="../HTML/heritages.html">Sign Out</a>
+                                </div>
+                                
+                                <div class="mega-menu-column">
+                                    <h3>Support</h3>
+                                    <a href="../HTML/aboutus.html">Creator's Detail</a>
+                                    <a href="https://www.instagram.com/og_denkg">Report an Issue</a>
+                                    <a href="https://patancollege.edu.np">Community page</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="switch">
+                    <span class="flag">
+                        <img src="../data/flag.png" alt="flag">
+                    </span>
+                </div>
+            </nav>
+  </header>
+  <br><br>
+  <div class="main-workspace">
+    <div class="explorer-container">
+        
+        <header class="explorer-header">
+            <div>
+                <h1> Nepal Geographic Location Hub</h1>
+                <p>Interactive coordinate locator and discovery mapping engine across administrative networks.</p>
+            </div>
+        </header>
+
+        <section class="map-wrapper-frame">
+            <div class="map-bar-label">
+                <span>📍 Live Exploration GIS Map Interface</span>
+            </div>
+            <div id="explorationMap"></div>
+        </section>
+
+        <section>
+            <div class="hub-control-strip">
+                <h2>Top Suggested Places</h2>
+                <button class="refresh-trigger-btn" onclick="generateRandomSuggestionsBoard()">
+                     Refresh Suggestions
+                </button>
+            </div>
+
+            <div class="suggestions-grid-canvas" id="suggestionsContainer"></div>
+        </section>
+
+    </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <script src="../JS/mapping.js">
+       
+    </script>
+</body>
+<footer>
+        <p>© 2026 Sustainable Cities And Communities</p>
+</footer>
+</html>
