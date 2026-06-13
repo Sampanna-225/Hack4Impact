@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Bounty Game</title>
+    <link rel="stylesheet" href="../CSS/game.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <header id="navi">
+        <nav class="light nav-animate-load" id="Nav">
+                <label class="logo">
+                    <a href="../HTML/aboutus.html">
+                        <img src="../data/logo.png">
+                    </a>
+                </label>
+                
+                <div class="center-buttons container-animate-load">
+                    <a href="../HTML/home.html">
+                        <button class="nav-btn" id="b0">Home</button>
+                    </a>
+
+                    <a href="../HTML/cities.html">
+                        <button class="nav-btn" id="b1">Cities</button>
+                    </a>
+
+                    <a href="../HTML/campaign.html">
+                        <button class="nav-btn" id="b2">Campaigns</button>
+                    </a>
+
+                    <a href="../HTML/news.html">
+                    <button class="nav-btn" id="b3">News</button>
+                    </a>
+
+                    <button class="nav-btn" id="b4">Services</button>
+
+                    <button class="nav-btn" id="b6">User</button>
+                </div>
+                
+                <div class="switch">
+                    <span class="flag">
+                        <img src="../data/flag.png" alt="flag">
+                    </span>
+                </div>
+            </nav>
+        </header>
+
+        <div class="header-container">
+            <div class="hud-panel">
+                <div class="lvl-indicator" id="playerLevel">1</div>
+                <div class="progression-track">
+                    <div class="stat-label">
+                        <span>XP Progress</span>
+                        <span id="xpText">350/1000</span>
+                    </div>
+                    <div class="meter-bg">
+                        <div class="meter-fill" id="xpMeter"></div>
+                    </div>
+                </div>
+                <div class="wallet-badge">
+                    💼 <span id="walletValue">Rs. 0</span>
+                </div>
+            </div>
+        </div>
+
+    <main class="main-workspace">
+        
+        <div class="workspace-left">
+            
+            <div class="panel-box">
+                <h3 class="panel-title">📸 Issue Reporter Desk (Upload Waste Problem)</h3>
+                <form id="reportForm" onsubmit="handleReportUpload(event)">
+                    <div class="input-group">
+                        <label>Location Area / Ward Name</label>
+                        <input type="text" id="repLoc" placeholder="e.g., Ward 4, Baluwatar, Kathmandu" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Target Coordinate Points (Latitude, Longitude)</label>
+                        <input type="text" id="repCoords" placeholder="e.g., 27.7172, 85.3240" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Issue Headline Description</label>
+                        <textarea id="repDesc" rows="2" placeholder="Describe the scale of the waste problem..." required></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Upload Image Proof </label>
+                        <form action="/action_page.php">
+                        <input type="file" id="myFile"  "filename">
+                      </form>
+                    </div>
+                    <button type="submit" class="submit-btn">Publish Bounty Issue to Society Queue</button>
+                </form>
+            </div>
+
+            <div class="panel-box" id="cleanerPanel" style="display: none; border-color: #1565c0;">
+                <h3 class="panel-title" style="color: #1565c0;">🧹 Cleaner Resolution Desk (Submit Challenge Proof)</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 1rem; color: #475569;">
+                    You are resolving: <strong id="activeTargetTitle" style="color: var(--dark-slate);">None</strong>
+                </p>
+                <form id="clearForm" onsubmit="handleCleanupResolution(event)">
+                    <div class="input-group">
+                        <label>Upload After-Cleanup Image/Video Proof</label>
+                        <select id="clearImg">
+                            <option value="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=500&q=80">✅ Verified Clean: Eco Green Zone Restored</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Action & Material Sorting Notes</label>
+                        <textarea id="clearNotes" rows="2" placeholder="Details on bags gathered or where plastics were diverted..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" style="background-color: #1565c0;">Submit Verified Cleanup & Claim Rewards</button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="workspace-right">
+            <h3 class="panel-title">🎯 Active Community Waste Bounties</h3>
+            <div class="bounty-feed" id="feedWrapper">
+                
+                <div class="bounty-card" id="bounty-101">
+                    <div class="bounty-img-box" onclick="triggerLocationOverlay('Ward 4, Baluwatar', '27.7214, 85.3301')">
+                        <span class="reward-tag">+400 XP • Rs. 500 Val</span>
+                        <img src="https://assets-cdn.kathmandupost.com/uploads/source/news/2025/third-party/photoplasticshutterstock-1746103782.jpg" alt="Waste pile">
+                        <div class="location-overlay-hint">📍 Click to View Location Coordinates</div>
+                    </div>
+                    <div class="bounty-body">
+                        <div class="bounty-loc">📍 Ward 4, Baluwatar</div>
+                        <h4 class="bounty-title">Commercial Plastic Waste Bottleneck</h4>
+                        <p class="bounty-desc">Large volume of mixed commercial plastic bottles and packaging material blocking secondary drainage canals.</p>
+                        <button class="claim-btn" onclick="engageChallenge(101, 'Commercial Plastic Waste Bottleneck', 400)">Accept Cleanup Challenge</button>
+                    </div>
+                </div>
+
+                <div class="bounty-card" id="bounty-102">
+                    <div class="bounty-img-box" onclick="triggerLocationOverlay('Ward 27, Asan Bazaar', '27.7075, 85.3134')">
+                        <span class="reward-tag">+300 XP • Rs. 300 Val</span>
+                        <img src="https://www.ccacoalition.org/sites/default/files/resources//food-waste_1024x512.jpg" alt="Waste pile">
+                        <div class="location-overlay-hint">📍 Click to View Location Coordinates</div>
+                    </div>
+                    <div class="bounty-body">
+                        <div class="bounty-loc">📍 Ward 27, Asan Bazaar</div>
+                        <h4 class="bounty-title">Organic Wastes</h4>
+                        <p class="bounty-desc">Leftover vegetable boxes, organic waste, and plastic wrapping sheets covering public walkway pathways.</p>
+                        <button class="claim-btn" onclick="engageChallenge(102, 'Market Day Organic & Paper Pile', 300)">Accept Cleanup Challenge</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-mask" id="locationModal">
+        <div class="location-box">
+            <div class="celebrate-icon">📍</div>
+            <h2 style="font-weight: 900; color: var(--accent-orange);" id="locModalTitle">Target Waste Site</h2>
+            <p style="color: #475569;">Verified location guidelines for field cleanup routing.</p>
+            
+            <div class="map-preview-card">
+                <div style="font-size: 0.9rem; font-weight: 700; color: #475569;">Registered Coordinates:</div>
+                <div class="coord-display" id="locModalCoords">00.0000, 00.0000</div>
+                <a href="#" id="googleMapsLink" target="_blank" class="maps-redirect-btn">Launch Google Maps Navigation Route →</a>
+            </div>
+
+            <button class="close-btn" onclick="dismissLocationModal()">Close Map Overlay</button>
+        </div>
+    </div>
+
+    <div class="modal-mask" id="rewardModal">
+        <div class="reward-box">
+            <div class="celebrate-icon">🎉</div>
+            <h2 style="font-weight: 900; color: var(--primary);">LEVEL UP!</h2>
+            <p style="color: #475569; margin-top: 0.3rem;">Your environmental actions leveled up your profile status!</p>
+            
+            <div class="voucher-card">
+                <div class="voucher-title">Packed Wallet Milestone Bonus unlocked</div>
+                <div class="voucher-val">Rs. 1,000 Cash Card</div>
+                <div class="voucher-code">Voucher Claim: <span id="promoCode">KMC-CLEAN-W579</span></div>
+            </div>
+
+            <button class="close-btn" onclick="dismissRewardModal()">Collect & Continue Level</button>
+        </div>
+    </div>
+
+    <script src="../JS/game.js">
+        
+    </script>
+    <footer>
+        <p>© 2026 Sustainable Cities And Communities </p>
+    </footer>
+</body>
+</html>     

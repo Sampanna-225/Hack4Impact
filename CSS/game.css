@@ -1,0 +1,523 @@
+:root {
+    --primary:rgba(196, 17, 17, 0.85);
+    --primary-light: #ffffff;
+    --accent-gold: #24ff20;
+    --accent-orange: rgb(7, 16, 81);
+    --dark-slate: #0f172a;
+    --light-slate: #f8fafc;
+    --border: #cbd5e1;
+    --shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.1);
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--light-slate);
+    color: var(--dark-slate);
+    line-height: 1.6;
+}
+
+/* --- Header & Campaign HUD --- */
+header {
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 3px solid var(--primary);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 4.2rem;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}  
+
+/* --- Player Status Panel (HUD) --- */
+.hud-panel {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--dark-slate);
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    box-shadow: var(--shadow);
+    box-shadow: 0 10px 20px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease; 
+
+}
+
+.hud-panel:hover{
+    background: linear-gradient(90deg, #0b105d, #08186c, #040d5b, #0b105d);
+    transform: translateY(-5px);
+}   
+
+.lvl-indicator {
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
+    color:#ffffff;
+    font-weight: 900;
+    font-size: 1.2rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(255,214,0,0.4);
+}
+
+.progression-track {
+    display: flex;
+    flex-direction: column;
+    width: 160px;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+}
+
+.meter-bg {
+    background: #334155;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 2px;
+}
+
+.meter-fill {
+    background: linear-gradient(90deg,rgb(255, 0, 0, 0.85), rgb(8, 166, 119));
+    height: 100%;
+    width: 35%;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wallet-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 800;
+    color: var(--accent-gold);
+    font-size: 1.05rem;
+    border-left: 1px solid #334155;
+    padding-left: 1rem;
+}
+
+/* --- Main Layout Frame --- */
+.main-workspace {
+    max-width: 1200px;
+    margin: 2.5rem auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 2.5rem;
+}
+
+@media (max-width: 968px) {
+    .main-workspace { grid-template-columns: 1fr; }
+}
+
+/* --- Left Column: Action Panels --- */
+.panel-box {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.panel-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: var(--dark-slate);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid var(--light-slate);
+    padding-bottom: 0.75rem;
+}
+
+/* --- Form Elements --- */
+.input-group {
+    margin-bottom: 1.25rem;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: #475569;
+}
+
+.input-group input, .input-group select, .input-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+.input-group input:focus, .input-group textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.submit-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.85rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    width: 100%;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.submit-btn:hover { background-color: rgba(147, 5, 5, 0.85); }
+
+/* --- Right Column: Active Bounty Feed Cards --- */
+.bounty-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.bounty-card {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.bounty-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+}
+
+/* --- Updated Card Image Box for Location Hint --- */
+.bounty-img-box {
+    position: relative;
+    height: 190px;
+    background: #e2e8f0;
+    cursor: pointer;
+}
+
+.bounty-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.bounty-img-box:hover img {
+    filter: brightness(0.75);
+}
+
+/* Map Pin Overlap Badge triggered on Hover */
+.location-overlay-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background:#1565c0;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0;
+    transition: var(--transition);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    pointer-events: none;
+}
+
+.bounty-img-box:hover .location-overlay-hint {
+    opacity: 1;
+}
+
+.reward-tag {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(15, 23, 42, 0.9);
+    color: var(--accent-gold);
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,214,0,0.3);
+    z-index: 5;
+}
+
+.bounty-body {
+    padding: 1.5rem;
+}
+
+.bounty-loc {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent-orange);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+}
+
+.bounty-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.bounty-desc {
+    font-size: 0.9rem;
+    color: #475569;
+    margin-bottom: 1.25rem;
+}
+
+.claim-btn {
+    background-color: #1565c0;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 700;
+    width: 100%;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.claim-btn:hover { background-color: #0d47a1; }
+
+/* --- Overlays & Modals --- */
+.modal-mask {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; visibility: hidden;
+    transition: var(--transition);
+}
+
+.modal-mask.show { opacity: 1; visibility: visible; }
+
+.reward-box, .location-box {
+    background: white;
+    border-radius: 20px;
+    width: 90%; max-width: 460px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+    transform: scale(0.9);
+    transition: var(--transition);
+}
+
+.modal-mask.show .reward-box, .modal-mask.show .location-box { transform: scale(1); }
+
+.celebrate-icon { font-size: 4rem; margin-bottom: 1rem; }
+
+.voucher-card {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    border: 2px dashed var(--accent-gold);
+}
+
+.voucher-val { font-size: 1.8rem; font-weight: 900; color: var(--accent-gold); }
+
+/* --- Specific Design for Location Popup --- */
+.map-preview-card {
+    background-color: #f1f5f9;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-left: 5px solid var(--accent-orange);
+    text-align: left;
+}
+
+.coord-display {
+    font-family: monospace;
+    background-color: #e2e8f0;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-weight: 700;
+    color: #0f172a;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.maps-redirect-btn {
+    background-color: var(--accent-orange);
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    display: block;
+    margin-top: 1rem;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.maps-redirect-btn:hover {
+    background-color: #e65100;
+}
+
+.close-btn {
+    background: var(--dark-slate);
+    color: white; border: none; padding: 0.75rem 1.5rem;
+    border-radius: 8px; font-weight: 700; width: 100%; cursor: pointer;
+}
+.idh {
+    justify-content: center;
+
+}
+footer {
+    background-color: var(--dark);
+    color: #94a3b8;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 5rem;
+    font-size: 0.9rem;
+}
+
+#navi {
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Merged the nice bold shadow here */
+    position: sticky; 
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; /* Keeps Logo left, buttons center, flag right */
+    color: black;
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+#b0 , #b1, #b2, #b3, #b4, #b5,#b6 {
+    height: 30px;
+    width: 120px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-size: 300% 100%;
+    transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+#b0:hover , #b1:hover, #b2:hover, #b3:hover, #b4:hover, #b5:hover, #b6:hover {
+    background: linear-gradient(90deg, rgb(255, 0, 0), #cd0606, #0bb2a4, rgb(255, 255, 255));
+    color: rgb(0, 0, 0);
+    background-position: 100% 0;
+    transform: translateY(-3px);
+    border: 2px solid black;
+    font-weight: 700;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.logo img {
+    height: 60px; 
+    width: auto;
+    display: block;
+}
+
+.flag{
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.flag img{
+    height: 38px;
+    width: auto;
+    display: block;
+}
+
+.nav-btn {
+    background: linear-gradient(90deg, #1093da, #5e2ce0, #9d00ff, #1093da);
+    background-size: 300% 100%;
+    background-position: 0% 0%;
+    color: #ffffff;
+    border: 2px solid #e1e1e1;
+    transition: background-position 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.center-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    /* No absolute positioning needed; flexbox handles centering */
+}
+
+.container-animate-load {
+    animation: gapping 2s 1 forwards, container-stretch 3s 1 forwards;
+}
+
+.light {
+    position: relative;
+    font-weight: bold; 
+    border: none;
+    cursor: pointer;
+    overflow: hidden; 
+    transition: background-image 0.5s ease-out;
+    background-image: radial-gradient(
+        circle 20px at var(--x, 0px) var(--y, 0px), 
+        rgba(0, 0, 225, var(--opacity, 0.25)) 0%,              
+        transparent 100%                                            
+    );
+}
+
+@keyframes gapping {
+    0% { gap: 1px; }
+    100% { gap: 20px; }
+}

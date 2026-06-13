@@ -31,7 +31,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 2px solid red;
+    border-bottom: 5px solid rgb(147, 12, 12);
 }
 
 .logo {
@@ -272,7 +272,7 @@ nav {
 }
 
 @keyframes gapping {
-    0% { gap: 1px; }
+    0% { gap: 10px; }
     100% { gap: 20px; }
 }
 

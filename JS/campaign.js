@@ -51,7 +51,7 @@ function switchCampaign(event, campaignId) {
 const buttons = document.querySelectorAll('.nav-btn');
 function Button_hover(){
     buttons.forEach(button => {
-            button.style.background = 'linear-gradient(90deg, #c20f0f, #d11e1e, #9d00ff, #1093da)';
+            button.style.background = 'linear-gradient(90deg, #ae0606, #ce1717, #9d00ff, #1093da)';
             button.style.color = "#ffffff";
             button.style.border = "2px solid #e1e1e1";
             button.style.backgroundSize = '300% 100%';
