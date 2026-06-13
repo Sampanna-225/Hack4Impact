@@ -521,13 +521,18 @@ transform: translateY(0) !important;
 pointer-events: auto; /* Activates interactive anchors upon display reveal */
 }
 
-/* --- BACKGROUND BLUR EFFECT WHEN MENU IS ACTIVE --- */
-/* If the nav header contains a hovered dropdown container, dim and blur the body workspace contents */
-body:has(.nav-item-dropdown:hover) .main-workspace,
-body:has(.mega-menu:hover) .main-workspace {
-filter: blur(8px) brightness(0.6);
-pointer-events: none; /* Prevents clicks on background layout cards while menu is up */
-transition: filter 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+body:has(.nav-item-dropdown:hover) .sdg-dashboard-wrapper,
+body:has(.mega-menu:hover) .sdg-dashboard-wrapper,
+body:has(.nav-item-dropdown.frozen) .sdg-dashboard-wrapper {
+    filter: blur(8px) brightness(0.6);
+    pointer-events: none; /* Prevents clicks on dashboard metrics while the menu is up */
+    transition: filter 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.sdg-dashboard-wrapper {
+    transition: filter 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-item-dropdown.frozen .mega-menu {

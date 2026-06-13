@@ -1,48 +1,474 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Track To Trust</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../CSS/home.css">
-    </head>
-    <body> 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sustainable Cities Nepal 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fraunces:ital,wght@0,300;0,700;0,900;1,300;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../CSS/home.css">
+<style>
+ 
+</style>
+</head>
+<body>
+  <header id="navi">
         <nav class="light nav-animate-load" id="Nav">
-            <label class="logo">
-                <a href="../HTML/aboutus.html">
-                <img src="../data/logo.png" alt="logo">
-                </a>
-            </label>
-            <div class="center-buttons container-animate-load">
+                <label class="logo">
+                    <a href="../HTML/aboutus.html">
+                        <img src="../data/logo.png">
+                    </a>
+                </label>
+                
+                <div class="center-buttons container-animate-load">
+                    <a href="../HTML/home.html">
+                        <button class="nav-btn" id="b0">Home</button>
+                    </a>
 
-                <a href="../HTML/cities.html">
+                    <a href="../HTML/cities.html">
                         <button class="nav-btn" id="b1">Cities</button>
-                </a>
+                    </a>
 
-                <a href="../HTML/campaign.html">
+                    <a href="../HTML/campaign.html">
                         <button class="nav-btn" id="b2">Campaigns</button>
-                </a>
+                    </a>
 
-                <a href="../HTML/news.html">
+                    <a href="../HTML/news.html">
                     <button class="nav-btn" id="b3">News</button>
-                </a>
+                    </a>
 
-                <button class="nav-btn" id="b4">Services</button>
+                    <div class="nav-item-dropdown">
+                        <button class="nav-btn" id="b4">Services</button>
+                        
+                        <div class="mega-menu">
+                            <div class="mega-menu-content">
+                                <div class="mega-menu-column">
+                                    <h3>Explore Services</h3>
+                                    <a href="../HTML/game.html">Waste Bounty</a>
+                                    <a href="../HTML/parking.html">Parking Areas and Info</a>
+                                    <a href="#">Heritage Locator</a>
+                                    <a href="../HTML/AQI.html">Air Quality Index (AQI)</a>
+                                    <a href="#">Mapping and Location</a>
+                                    <a href="../HTML/SDG.html">SDG goals</a>
+                                </div>
+                                
+                                <div class="mega-menu-column">
+                                    <h3>Support</h3>
+                                    <a href="#">Creator's Detail</a>
+                                    <a href="#">Report an Issue</a>
+                                    <a href="#">Community page</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <button class="nav-btn" id="b6">User</button>
-            </div>
-            <label class="switch">
-                <input type="checkbox" id="checker">
-                <span class="slider"></span>
-            </label>
-        </nav>
-        <canvas id="bgCanvas"></canvas>
+                    <button class="nav-btn" id="b6">User</button>
+                </div>
+                
+                <div class="switch">
+                    <span class="flag">
+                        <img src="../data/flag.png" alt="flag">
+                    </span>
+                </div>
+            </nav>
+  </header>
 
-        <main>
-            <h1 class="title-class-name"> Sustainable Cities And Communication.</h1>
-        </main>
+<!-- HERO -->
+<div class="main-workspace">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="grid-lines"></div>
 
-        <script src="../JS/home.js"></script>
-    </body>
+    <!-- Stylised mountain silhouette -->
+    <svg class="mountain-svg" viewBox="0 0 1440 320" preserveAspectRatio="xMidYMax slice">
+      <polygon points="0,320 180,80 310,200 480,20 680,220 820,110 1000,260 1180,60 1440,320" fill="white"/>
+    </svg>
+
+    <div class="hero-inner">
+      <div class="eyebrow fade-up">Nepal Urban Sustainability Initiative 2026</div>
+      <h1 class="hero-headline fade-up delay-1">
+        Cities that<br><em>breathe,</em><br>communities<br>that thrive.
+      </h1>
+      <p class="hero-sub fade-up delay-2">
+        Tracking air quality, green infrastructure, and civic communication across Nepal's urban centres in real time.
+      </p>
+      <div class="hero-actions fade-up delay-3">
+        <a class="btn-primary" href="#cities">Explore Cities</a>
+        <a class="btn-ghost" href="#initiatives">Our Initiatives</a>
+      </div>
+
+      <!-- Live AQI strip -->
+      <div class="aqi-strip fade-up delay-4">
+        <div class="aqi-city">
+          <div class="aqi-city-name">Kathmandu</div>
+          <div class="aqi-value" style="color:#FCD34D">58</div>
+          <span class="aqi-badge badge-moderate">Moderate</span>
+        </div>
+        <div class="aqi-city">
+          <div class="aqi-city-name">Lalitpur</div>
+          <div class="aqi-value" style="color:#4ADE80">42</div>
+          <span class="aqi-badge badge-good">Good</span>
+        </div>
+        <div class="aqi-city">
+          <div class="aqi-city-name">Bhaktapur</div>
+          <div class="aqi-value" style="color:#4ADE80">36</div>
+          <span class="aqi-badge badge-good">Good</span>
+        </div>
+        <div class="aqi-city">
+          <div class="aqi-city-name">Pokhara</div>
+          <div class="aqi-value" style="color:#4ADE80">29</div>
+          <span class="aqi-badge badge-good">Good</span>
+        </div>
+        <div class="aqi-city">
+          <div class="aqi-city-name">Biratnagar</div>
+          <div class="aqi-value" style="color:#FCA5A5">71</div>
+          <span class="aqi-badge badge-unhealthy">Unhealthy</span>
+        </div>
+        <div class="aqi-city">
+          <div class="aqi-city-name">Butwal</div>
+          <div class="aqi-value" style="color:#FCD34D">53</div>
+          <span class="aqi-badge badge-moderate">Moderate</span>
+        </div>
+        <div class="aqi-city">
+          <div class="aqi-city-name">Janakpur</div>
+          <div class="aqi-value" style="color:#FCD34D">61</div>
+          <span class="aqi-badge badge-moderate">Moderate</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-section">
+    <div class="stats-inner">
+      <div class="section-label reveal">By the numbers</div>
+      <h2 class="section-heading reveal">Nepal's urban environment at a glance.</h2>
+      <div class="stats-grid">
+        <div class="stat-block reveal">
+          <div class="stat-num">7<span>cities</span></div>
+          <div class="stat-desc">actively monitored with live environmental sensors across the country</div>
+        </div>
+        <div class="stat-block reveal">
+          <div class="stat-num">29<span>%</span></div>
+          <div class="stat-desc">forest cover remaining — target is 40% by 2030</div>
+        </div>
+        <div class="stat-block reveal">
+          <div class="stat-num">42<span>%</span></div>
+          <div class="stat-desc">of urban commuters using public or non-motorised transport</div>
+        </div>
+        <div class="stat-block reveal">
+          <div class="stat-num">156</div>
+          <div class="stat-desc">green-certified buildings constructed in the last 3 years</div>
+        </div>
+        <div class="stat-block reveal">
+          <div class="stat-num">5K<span>+</span></div>
+          <div class="stat-desc">youth trained in environmental planning and civic communication</div>
+        </div>
+        <div class="stat-block reveal">
+          <div class="stat-num">18<span>%</span></div>
+          <div class="stat-desc">renewable energy share in the national electricity grid</div>
+        </div>
+        <div class="stat-block reveal">
+          <div class="stat-num">34<span>%</span></div>
+          <div class="stat-desc">urban solid waste diverted from landfill through recycling</div>
+        </div>
+        <div class="stat-block reveal">
+          <div class="stat-num">120<span>+</span></div>
+          <div class="stat-desc">corporate partners funding urban sustainability projects</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CITIES -->
+  <section class="cities-section" id="cities">
+    <div class="cities-inner">
+      <div class="cities-header">
+        <div>
+          <div class="section-label" style="color:#EF4444">Live city data</div>
+          <h2 class="section-heading reveal">Air quality across<br>Nepal's urban centres.</h2>
+        </div>
+        <p style="color:#64748B; font-size:0.85rem; max-width:260px; line-height:1.6;">Updated hourly from municipal sensor networks. AQI follows WHO guidelines.</p>
+      </div>
+
+      <div class="cities-scroll reveal">
+        <!-- Kathmandu -->
+        <div class="city-tile">
+          <div class="city-tile-top">
+            <div class="city-tile-name">Kathmandu</div>
+            <div class="city-tile-tag">Heritage<br>Hub</div>
+          </div>
+          <div class="city-aqi-big" style="color:#FCD34D">58</div>
+          <div class="city-aqi-label">Air Quality Index</div>
+          <span class="aqi-badge badge-moderate">Moderate</span>
+          <div class="progress-row">
+            <div class="progress-label-row"><span>Green Cover</span><span>42%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:42%;background:#4ADE80"></div></div>
+          </div>
+          <div class="city-metrics-row">
+            <div class="city-metric-item"><span class="city-metric-val">19°C</span><span class="city-metric-label">Temp</span></div>
+            <div class="city-metric-item"><span class="city-metric-val">65%</span><span class="city-metric-label">Humidity</span></div>
+            <div class="city-metric-item"><span class="city-metric-val">8 mph</span><span class="city-metric-label">Wind</span></div>
+          </div>
+        </div>
+
+        <!-- Lalitpur -->
+        <div class="city-tile">
+          <div class="city-tile-top">
+            <div class="city-tile-name">Lalitpur</div>
+            <div class="city-tile-tag">Crafts &amp;<br>Arts</div>
+          </div>
+          <div class="city-aqi-big" style="color:#4ADE80">42</div>
+          <div class="city-aqi-label">Air Quality Index</div>
+          <span class="aqi-badge badge-good">Good</span>
+          <div class="progress-row">
+            <div class="progress-label-row"><span>Green Cover</span><span>58%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:58%;background:#4ADE80"></div></div>
+          </div>
+          <div class="city-metrics-row">
+            <div class="city-metric-item"><span class="city-metric-val">18°C</span><span class="city-metric-label">Temp</span></div>
+            <div class="city-metric-item"><span class="city-metric-val">72%</span><span class="city-metric-label">Humidity</span></div>
+            <div class="city-metric-item"><span class="city-metric-val">6 mph</span><span class="city-metric-label">Wind</span></div>
+          </div>
+        </div>
+
+        <!-- Bhaktapur -->
+        <div class="city-tile">
+          <div class="city-tile-top">
+            <div class="city-tile-name">Bhaktapur</div>
+            <div class="city-tile-tag">Eco<br>Crossroad</div>
+          </div>
+          <div class="city-aqi-big" style="color:#4ADE80">36</div>
+          <div class="city-aqi-label">Air Quality Index</div>
+          <span class="aqi-badge badge-good">Good</span>
+          <div class="progress-row">
+            <div class="progress-label-row"><span>Green Cover</span><span>72%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:72%;background:#4ADE80"></div></div>
+          </div>
+          <div class="city-metrics-row">
+            <div class="city-metric-item"><span class="city-metric-val">17°C</span><span class="city-metric-label">Temp</span></div>
+            <div class="city-metric-item"><span class="city-metric-val">58%</span><span class="city-metric-label">Humidity</span></div>
+            <div class="city-metric-item"><span class="city-metric-val">12 mph</span><span class="city-metric-label">Wind</span></div>
+          </div>
+        </div>
+
+        <!-- Pokhara -->
+        <div class="city-tile">
+          <div class="city-tile-top">
+            <div class="city-tile-name">Pokhara</div>
+            <div class="city-tile-tag">Mountain<br>Gateway</div>
+          </div>
+          <div class="city-aqi-big" style="color:#4ADE80">29</div>
+          <div class="city-aqi-label">Air Quality Index</div>
+          <span class="aqi-badge badge-good">Good</span>
+          <div class="progress-row">
+            <div class="progress-label-row"><span>Green Cover</span><span>68%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:68%;background:#4ADE80"></div></div>
+          </div>
+          <div class="city-metrics-row">
+            <div class="city-metric-item"><span class="city-metric-val">16°C</span><span class="city-metric-label">Temp</span></div>
+            <div class="city-metric-item"><span class="city-metric-val">48%</span><span class="city-metric-label">Humidity</span></div>
+            <div class="city-metric-item"><span class="city-metric-val">14 mph</span><span class="city-metric-label">Wind</span></div>
+          </div>
+        </div>
+
+        <!-- Biratnagar -->
+        <div class="city-tile">
+          <div class="city-tile-top">
+            <div class="city-tile-name">Biratnagar</div>
+            <div class="city-tile-tag">Industrial<br>Hub</div>
+          </div>
+          <div class="city-aqi-big" style="color:#FCA5A5">71</div>
+          <div class="city-aqi-label">Air Quality Index</div>
+          <span class="aqi-badge badge-unhealthy">Unhealthy</span>
+          <div class="progress-row">
+            <div class="progress-label-row"><span>Green Cover</span><span>28%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:28%;background:#EF4444"></div></div>
+          </div>
+          <div class="city-metrics-row">
+            <div class="city-metric-item"><span class="city-metric-val">27°C</span><span class="city-metric-label">Temp</span></div>
+            <div class="city-metric-item"><span class="city-metric-val">69%</span><span class="city-metric-label">Humidity</span></div>
+            <div class="city-metric-item"><span class="city-metric-val">7 mph</span><span class="city-metric-label">Wind</span></div>
+          </div>
+        </div>
+
+        <!-- Butwal -->
+        <div class="city-tile">
+          <div class="city-tile-top">
+            <div class="city-tile-name">Butwal</div>
+            <div class="city-tile-tag">Economic<br>Crossroad</div>
+          </div>
+          <div class="city-aqi-big" style="color:#FCD34D">53</div>
+          <div class="city-aqi-label">Air Quality Index</div>
+          <span class="aqi-badge badge-moderate">Moderate</span>
+          <div class="progress-row">
+            <div class="progress-label-row"><span>Green Cover</span><span>45%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:45%;background:#FCD34D"></div></div>
+          </div>
+          <div class="city-metrics-row">
+            <div class="city-metric-item"><span class="city-metric-val">25°C</span><span class="city-metric-label">Temp</span></div>
+            <div class="city-metric-item"><span class="city-metric-val">63%</span><span class="city-metric-label">Humidity</span></div>
+            <div class="city-metric-item"><span class="city-metric-val">9 mph</span><span class="city-metric-label">Wind</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AQI GUIDE -->
+  <section class="aqi-guide">
+    <div class="aqi-guide-inner">
+      <div class="section-label" style="color:#EF4444">Understanding the scale</div>
+      <h2 class="section-heading reveal" style="color:white">What does the AQI<br>number mean for you?</h2>
+      <div class="aqi-scale reveal">
+        <div class="aqi-scale-block" style="background:rgba(74,222,128,0.15)">
+          <div class="aqi-scale-range" style="color:#4ADE80">0–50</div>
+          <span class="aqi-scale-label" style="color:#4ADE80">Good</span>
+          <div class="aqi-scale-desc" style="color:#94A3B8">Air quality is satisfactory. Go outdoors freely.</div>
+        </div>
+        <div class="aqi-scale-block" style="background:rgba(252,211,77,0.12)">
+          <div class="aqi-scale-range" style="color:#FCD34D">51–100</div>
+          <span class="aqi-scale-label" style="color:#FCD34D">Moderate</span>
+          <div class="aqi-scale-desc" style="color:#94A3B8">Acceptable. Sensitive groups should limit prolonged exertion.</div>
+        </div>
+        <div class="aqi-scale-block" style="background:rgba(251,146,60,0.12)">
+          <div class="aqi-scale-range" style="color:#FB923C">101–150</div>
+          <span class="aqi-scale-label" style="color:#FB923C">Sensitive</span>
+          <div class="aqi-scale-desc" style="color:#94A3B8">Unhealthy for children, elderly, and people with lung disease.</div>
+        </div>
+        <div class="aqi-scale-block" style="background:rgba(239,68,68,0.12)">
+          <div class="aqi-scale-range" style="color:#EF4444">151–200</div>
+          <span class="aqi-scale-label" style="color:#EF4444">Unhealthy</span>
+          <div class="aqi-scale-desc" style="color:#94A3B8">Everyone may begin to experience health effects. Reduce outdoor activity.</div>
+        </div>
+        <div class="aqi-scale-block" style="background:rgba(168,85,247,0.12)">
+          <div class="aqi-scale-range" style="color:#C084FC">201–300</div>
+          <span class="aqi-scale-label" style="color:#C084FC">Very Unhealthy</span>
+          <div class="aqi-scale-desc" style="color:#94A3B8">Health alert. Avoid outdoor exertion.</div>
+        </div>
+        <div class="aqi-scale-block" style="background:rgba(185,28,28,0.2)">
+          <div class="aqi-scale-range" style="color:#FCA5A5">301+</div>
+          <span class="aqi-scale-label" style="color:#FCA5A5">Hazardous</span>
+          <div class="aqi-scale-desc" style="color:#94A3B8">Emergency conditions. Stay indoors.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INITIATIVES -->
+  <section class="initiatives-section" id="initiatives">
+    <div class="initiatives-inner">
+      <div class="section-label">What we're doing</div>
+      <h2 class="section-heading reveal">Communication &amp; action<br>for liveable cities.</h2>
+      <div class="initiatives-grid reveal">
+
+        <div class="initiative-card">
+          <div class="initiative-num">01</div>
+          <span class="initiative-icon">📡</span>
+          <div class="initiative-title">Real-time Data Broadcasting</div>
+          <p class="initiative-desc">AQI and environmental sensor data published openly every hour across mobile apps, roadside digital boards, and the public data API — so no Nepali has to guess the air quality in their city.</p>
+          <a class="initiative-link" href="#">Access the API →</a>
+        </div>
+
+        <div class="initiative-card">
+          <div class="initiative-num">02</div>
+          <span class="initiative-icon">🏫</span>
+          <div class="initiative-title">School Integration Programme</div>
+          <p class="initiative-desc">Sustainability curriculum embedded in 2,400 schools across all seven provinces. By 2027, 450,000 students will graduate with structured environmental literacy.</p>
+          <a class="initiative-link" href="#">Read the curriculum →</a>
+        </div>
+
+        <div class="initiative-card">
+          <div class="initiative-num">03</div>
+          <span class="initiative-icon">🌿</span>
+          <div class="initiative-title">Urban Greening Mandate</div>
+          <p class="initiative-desc">Municipal mandate requiring all new construction above 200 m² to include green roofing, permeable surfaces, or street-level planting — tracked through this dashboard in real time.</p>
+          <a class="initiative-link" href="#">Policy details →</a>
+        </div>
+
+        <div class="initiative-card">
+          <div class="initiative-num">04</div>
+          <span class="initiative-icon">🤝</span>
+          <div class="initiative-title">Community Town Halls</div>
+          <p class="initiative-desc">Monthly open forums in eight major cities where residents meet city planners, environmental scientists, and local government to review data and set air quality improvement targets together.</p>
+          <a class="initiative-link" href="#">Upcoming events →</a>
+        </div>
+
+        <div class="initiative-card">
+          <div class="initiative-num">05</div>
+          <span class="initiative-icon">🚴</span>
+          <div class="initiative-title">Clean Mobility Corridors</div>
+          <p class="initiative-desc">Dedicated cycling and e-mobility lanes being constructed in Kathmandu, Pokhara, and Lalitpur — reducing vehicle emissions on the highest-traffic roads by an estimated 18%.</p>
+          <a class="initiative-link" href="#">Track progress →</a>
+        </div>
+
+        <div class="initiative-card">
+          <div class="initiative-num">06</div>
+          <span class="initiative-icon">🏢</span>
+          <div class="initiative-title">Corporate Accountability</div>
+          <p class="initiative-desc">120+ companies enrolled in the Nepal Urban ESG Compact, publicly committing to emissions targets and contributing to the city greening fund. Annual progress reports published here.</p>
+          <a class="initiative-link" href="#">View partners →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- UPDATES -->
+  <section class="updates-section">
+    <div class="updates-inner">
+      <div class="section-label">Latest updates</div>
+      <h2 class="section-heading reveal">News from the ground.</h2>
+      <div class="updates-grid reveal">
+        <div class="update-card update-featured">
+          <div class="update-category">Policy</div>
+          <div class="update-title">Kathmandu Valley introduces tiered vehicle emission standards ahead of 2027 deadline</div>
+          <p class="update-excerpt">The Bagmati Province government has passed new vehicle emission standards that will phase out pre-Euro IV engines from the valley's core ring road by December 2027. Officials say the move could reduce vehicular particulate matter by up to 23% during peak hours.</p>
+          <div class="update-meta">June 11, 2026 &nbsp;·&nbsp; Policy &amp; Regulation</div>
+        </div>
+        <div class="update-card">
+          <div class="update-category">Air Quality</div>
+          <div class="update-title">Pokhara records its cleanest air in a decade</div>
+          <p class="update-excerpt">Sustained westerly winds and reduced construction activity pushed the lakeside city's 7-day average AQI to 28 — the lowest reading since monitoring began in 2016.</p>
+          <div class="update-meta">June 9, 2026</div>
+        </div>
+        <div class="update-card">
+          <div class="update-category">Community</div>
+          <div class="update-title">Biratnagar town hall draws record 1,200 residents</div>
+          <p class="update-excerpt">Last month's open forum saw unprecedented turnout as residents pushed for faster industrial emission controls around the eastern corridor.</p>
+          <div class="update-meta">June 7, 2026</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <span class="cta-flag">🇳🇵</span>
+      <h2 class="cta-heading">Stay informed.<br>Help Nepal breathe.</h2>
+      <p class="cta-sub">Get the weekly digest — AQI summaries, policy updates, and community actions delivered to your inbox every Monday morning.</p>
+      <div class="email-row">
+        <input type="email" placeholder="Your email address">
+        <button>Subscribe</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-brand">Sustainable Cities Nepal</span>
+      <ul class="footer-links">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Data</a></li>
+        <li><a href="#">Policy</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <span style="font-size:0.75rem">© 2026 Nepal Urban Sustainability Initiative</span>
+    </div>
+  </footer>
+</div>
+<script src="../JS/home.js">
+ 
+</script>
+</body>
 </html>

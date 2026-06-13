@@ -382,26 +382,8 @@
         </div>
     </div>
 
-    <script>
-        function toggleSdgDrawer(buttonElement) {
-            const nodeContainer = buttonElement.parentElement;
-            const targetDrawer = buttonElement.nextElementSibling;
-            
-            // Checks to see if this drawer pane is already actively expanded
-            const isCurrentlyActive = nodeContainer.classList.contains('node-active');
-            
-            // First collapse all active panels to simulate a smooth interactive accordion
-            document.querySelectorAll('.goal-node').forEach(node => {
-                node.classList.remove('node-active');
-                node.querySelector('.goal-panel-drawer').style.maxHeight = null;
-            });
+    <script src="../JS/SDG.js">
 
-            // If the clicked panel wasn't active, expand it dynamically using calculated heights
-            if (!isCurrentlyActive) {
-                nodeContainer.classList.add('node-active');
-                targetDrawer.style.maxHeight = targetDrawer.scrollHeight + "px";
-            }
-        }
     </script>
 </body>
 <footer>

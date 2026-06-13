@@ -1,11 +1,23 @@
- const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); }
+function toggleSdgDrawer(buttonElement) {
+    const nodeContainer = buttonElement.parentElement;
+    const targetDrawer = buttonElement.nextElementSibling;
+    
+    // Checks to see if this drawer pane is already actively expanded
+    const isCurrentlyActive = nodeContainer.classList.contains('node-active');
+    
+    // First collapse all active panels to simulate a smooth interactive accordion
+    document.querySelectorAll('.goal-node').forEach(node => {
+        node.classList.remove('node-active');
+        node.querySelector('.goal-panel-drawer').style.maxHeight = null;
     });
-  }, { threshold: 0.1 });
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  
+    // If the clicked panel wasn't active, expand it dynamically using calculated heights
+    if (!isCurrentlyActive) {
+        nodeContainer.classList.add('node-active');
+        targetDrawer.style.maxHeight = targetDrawer.scrollHeight + "px";
+    }
+}
+
 //Dropdown 
 function initDropdownFreezeEngine() {
 const dropdownWrapper = document.querySelector('.nav-item-dropdown');
