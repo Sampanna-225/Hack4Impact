@@ -118,3 +118,64 @@ function broadcast_refresh(){
         console.warn('BroadcastChannel not supported:', error);
     }
 }
+
+function initDropdownFreezeEngine() {
+    // 1. Grab ALL dropdown containers on the page
+    const allDropdowns = document.querySelectorAll('.nav-item-dropdown');
+    const allNavButtons = document.querySelectorAll('.center-buttons .nav-btn');
+
+    if (allDropdowns.length === 0) return;
+
+    allDropdowns.forEach(dropdownWrapper => {
+        const megaMenu = dropdownWrapper.querySelector('.mega-menu');
+        if (!megaMenu) return;
+
+        // Freeze State Activation: When mouse enters a specific dropdown wrapper area
+        dropdownWrapper.addEventListener('mouseenter', () => {
+            // First clear out any other open dropdowns to avoid overlap
+            allDropdowns.forEach(d => d.classList.remove('frozen'));
+            dropdownWrapper.classList.add('frozen');
+        });
+
+        megaMenu.addEventListener('mouseenter', () => {
+            dropdownWrapper.classList.add('frozen');
+        });
+
+        // Unfreeze Trigger 1: If mouse moves over standard navigation buttons that AREN'T inside a dropdown container
+        allNavButtons.forEach(button => {
+            // Check if this button is nested inside a dropdown element
+            const parentDropdown = button.closest('.nav-item-dropdown');
+            
+            // If it's a completely standalone button (like Home, Cities, Campaigns, News)
+            if (!parentDropdown) {
+                button.addEventListener('mouseenter', () => {
+                    dropdownWrapper.classList.remove('frozen');
+                });
+            }
+        });
+
+        // Unfreeze Trigger 2: Perimeter Boundary Tracking Map
+        document.addEventListener('mousemove', (e) => {
+            if (!dropdownWrapper.classList.contains('frozen')) return;
+
+            const menuRect = megaMenu.getBoundingClientRect();
+            
+            // If the menu is visible and the cursor's Y-coordinate drops 15px past the bottom boundary lines
+            if (menuRect.height > 0 && e.clientY > (menuRect.bottom + 15)) {
+                dropdownWrapper.classList.remove('frozen');
+            }
+        });
+    });
+
+    // Backup safety escape catch-all: clear everything if clicking anywhere completely outside the navigation links
+    document.addEventListener('click', (e) => {
+        allDropdowns.forEach(dropdownWrapper => {
+            if (!dropdownWrapper.contains(e.target)) {
+                dropdownWrapper.classList.remove('frozen');
+            }
+        });
+    });
+}
+
+// Fire up tracking on load execution
+document.addEventListener('DOMContentLoaded', initDropdownFreezeEngine);
