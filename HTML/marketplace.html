@@ -438,7 +438,7 @@ let currentWalletCoins = 0;
             currentWalletCoins = updatedBalance;
             document.getElementById('userCoinBalanceDisplay').textContent = currentWalletCoins.toLocaleString();
 
-            alert(`Success! You have redeemed: ${itemName}.\nYour remaining balance is now ${currentWalletCoins} EcoCoins.`);
+            alert(`Success! You have redeemed: ${itemName}.\nYour remaining balance is now ${currentWalletCoins} EcoCoins. A mail will sent to you gmail.`);
             
             // Broadcast the change to keep other tabs (like your map dashboard) completely synced
             broadcast_refresh();
